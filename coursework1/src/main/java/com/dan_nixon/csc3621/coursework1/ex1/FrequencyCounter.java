@@ -1,4 +1,4 @@
-package com.dan_nixon.csc3621.coursework1;
+package com.dan_nixon.csc3621.coursework1.ex1;
 
 import java.io.File;
 import java.io.FileInputStream;

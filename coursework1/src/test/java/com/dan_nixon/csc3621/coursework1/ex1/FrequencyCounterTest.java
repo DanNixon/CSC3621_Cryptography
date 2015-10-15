@@ -1,4 +1,4 @@
-package com.dan_nixon.csc3621.coursework1;
+package com.dan_nixon.csc3621.coursework1.ex1;
 
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
-import com.dan_nixon.csc3621.coursework1.FrequencyCounter;
+import com.dan_nixon.csc3621.coursework1.ex1.FrequencyCounter;
 
 public class FrequencyCounterTest
 {

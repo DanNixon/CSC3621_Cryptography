@@ -18,6 +18,23 @@ public class Utils
     return (char) (idx + 97);
   }
 
+  public static char rotateChar(char c, int rotation)
+  {
+    int index = (getIndexFromChar(c) + rotation) % 26;
+    return getCharFromIndex(index);
+  }
+
+  public static double[] rotateArray(double[] in, int rotation)
+  {
+    double[] out = new double[in.length];
+    for (int i = 0; i < in.length; i++)
+    {
+      int newIdx = (i + rotation) % in.length;
+      out[newIdx] = in[i];
+    }
+    return out;
+  }
+
   public static int getClosestMatch(double[] a, double value)
   {
     int bestIdx = 0;

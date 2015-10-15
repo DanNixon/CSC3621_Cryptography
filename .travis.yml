@@ -10,6 +10,7 @@ script:
   - cd coursework1
   - mvn install -DskipTests=true
   - mvn test
+  - ./run_analysis
 
 notifications:
   email:
