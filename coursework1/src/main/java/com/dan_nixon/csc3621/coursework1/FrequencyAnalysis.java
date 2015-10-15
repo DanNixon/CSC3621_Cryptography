@@ -13,16 +13,16 @@ public class FrequencyAnalysis
 {
   public FrequencyAnalysis()
   {
-    m_normEnglishDistrib = null;
+    m_plainDistrib = null;
     m_cipherDistrib = null;
   }
 
-  public void learnEnglishDistribution(File[] files) throws IOException, FileNotFoundException
+  public void learnPlainTextDistribution(File[] files) throws IOException, FileNotFoundException
   {
     FrequencyCounter fc = new FrequencyCounter();
     for (int i = 0; i < files.length; i++)
       fc.count(files[i]);
-    m_normEnglishDistrib = fc.normalise();
+    m_plainDistrib = fc.normalise();
   }
 
   public void readCipher(File file) throws IOException, FileNotFoundException
@@ -32,8 +32,18 @@ public class FrequencyAnalysis
     m_cipherDistrib = fc.normalise();
   }
 
+  public double[] getPlainTextDistribution()
+  {
+    return m_plainDistrib;
+  }
+
+  public double[] getCipherTextDistribution()
+  {
+    return m_cipherDistrib;
+  }
+
   //TODO
 
-  private double[] m_normEnglishDistrib;
+  private double[] m_plainDistrib;
   private double[] m_cipherDistrib;
 }

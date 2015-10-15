@@ -10,6 +10,8 @@ import com.dan_nixon.csc3621.coursework1.FrequencyCounter;
 
 public class FrequencyCounterTest
 {
+  public static final double TOLERANCE = 0.0000000001;
+
   @Test
   public void testAllZeroAtInstantiation()
   {
@@ -18,7 +20,7 @@ public class FrequencyCounterTest
     for (int i = 97; i < 123; i++)
     {
       char c = (char) i;
-      assertEquals(fa.occurrences(c), 0);
+      assertEquals(0, fa.occurrences(c));
     }
   }
 
@@ -27,14 +29,14 @@ public class FrequencyCounterTest
   {
     FrequencyCounter fa = new FrequencyCounter();
 
-    assertEquals(fa.toString(),
-                 "FrequencyCounter[a=0,b=0,c=0,d=0,e=0,f=0,g=0,h=0,i=0,j=0,k=0,l=0,m=0,n=0,o=0,p=0,q=0,r=0,s=0,t=0,u=0,v=0,w=0,x=0,y=0,z=0]");
+    assertEquals("FrequencyCounter[a=0,b=0,c=0,d=0,e=0,f=0,g=0,h=0,i=0,j=0,k=0,l=0,m=0,n=0,o=0,p=0,q=0,r=0,s=0,t=0,u=0,v=0,w=0,x=0,y=0,z=0]",
+                 fa.toString());
   }
 
   @Test
   public void testReadSimpleFile() throws IOException
   {
-    URL url = this.getClass().getResource("/test_FrequencyAnalysis_1.txt");
+    URL url = this.getClass().getResource("/test_text_1.txt");
     File file = new File(url.getFile());
 
     FrequencyCounter fa = new FrequencyCounter();
@@ -43,16 +45,16 @@ public class FrequencyCounterTest
     for (int i = 97; i < 123; i++)
     {
       char c = (char) i;
-      assertEquals(fa.occurrences(c), 1);
+      assertEquals(1, fa.occurrences(c));
     }
 
-    assertEquals(fa.totalCount(), 26);
+    assertEquals(26, fa.totalCount());
   }
 
   @Test
   public void testReadFileWithAllDifferentCounts() throws IOException
   {
-    URL url = this.getClass().getResource("/test_FrequencyAnalysis_2.txt");
+    URL url = this.getClass().getResource("/test_text_2.txt");
     File file = new File(url.getFile());
 
     FrequencyCounter fa = new FrequencyCounter();
@@ -62,16 +64,16 @@ public class FrequencyCounterTest
     {
       char c = (char) i;
       int numExpected = i - 96;
-      assertEquals(fa.occurrences(c), numExpected);
+      assertEquals(numExpected, fa.occurrences(c));
     }
 
-    assertEquals(fa.totalCount(), 351);
+    assertEquals(351, fa.totalCount());
   }
 
   @Test
   public void testNormalise() throws IOException
   {
-    URL url = this.getClass().getResource("/test_FrequencyAnalysis_2.txt");
+    URL url = this.getClass().getResource("/test_text_2.txt");
     File file = new File(url.getFile());
 
     FrequencyCounter fa = new FrequencyCounter();
@@ -81,6 +83,6 @@ public class FrequencyCounterTest
     double total = 0.0;
     for (int i = 0; i < norm.length; i++)
       total += norm[i];
-    assertEquals(total, 1.0, 0.0000000001);
+    assertEquals(1.0, total, TOLERANCE);
   }
 }

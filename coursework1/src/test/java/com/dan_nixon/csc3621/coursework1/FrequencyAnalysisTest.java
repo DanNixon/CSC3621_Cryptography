@@ -11,47 +11,50 @@ import com.dan_nixon.csc3621.coursework1.FrequencyAnalysis;
 
 public class FrequencyAnalysisTest
 {
-  // @Test
-  // public void testReadCourseworkFile() throws IOException
-  // {
-  //   File englishFile = new File(this.getClass().getResource("/pg1661.txt").getFile());
-  //   File cipherFile = new File(this.getClass().getResource("/Exercise1Ciphertext.txt").getFile());
+  public static final double TOLERANCE = 0.0001;
 
-  //   FrequencyCounter efa = new FrequencyCounter(englishFile);
-  //   efa.count();
+  @Test
+  public void testReadPlain() throws IOException
+  {
+    File plainFile1 = new File(this.getClass().getResource("/pg1661.txt").getFile());
+    File[] plainFiles = {plainFile1};
 
-  //   double[] englishNorm = efa.normalise();
+    FrequencyAnalysis fa = new FrequencyAnalysis();
+    fa.learnPlainTextDistribution(plainFiles);
 
-  //   FrequencyCounter fa = new FrequencyCounter(cipherFile);
-  //   fa.count();
+    double[] plainDistrib = fa.getPlainTextDistribution();
 
-  //   assertTrue(fa.occurrences('e') > 1);
+    assertEquals(0.08083, plainDistrib[0], TOLERANCE);
+    assertEquals(0.12288, plainDistrib[4], TOLERANCE);
+  }
 
-  //   System.out.println(fa);
-  //   System.out.println(fa.totalCount());
+  @Test
+  public void testReadMultiplePlain() throws IOException
+  {
+    File plainFile1 = new File(this.getClass().getResource("/pg1661.txt").getFile());
+    File plainFile2 = new File(this.getClass().getResource("/test_text_1.txt").getFile());
+    File[] plainFiles = {plainFile1, plainFile2};
 
-  //   double[] norm = fa.normalise();
-  //   System.out.println(Arrays.toString(norm));
+    FrequencyAnalysis fa = new FrequencyAnalysis();
+    fa.learnPlainTextDistribution(plainFiles);
 
-  //   int[] mapping = fa.decipher(englishNorm);
-  //   System.out.println(Arrays.toString(mapping));
+    double[] plainDistrib = fa.getPlainTextDistribution();
 
-  //   for (int i = 0; i < 26; i++)
-  //   {
-  //     StringBuilder sb = new StringBuilder();
-  //     // sb.append(Utils.getCharFromIndex(i));
-  //     sb.append("(");
-  //     sb.append(norm[i]);
-  //     sb.append(") => ");
-  //     // sb.append(Utils.getCharFromIndex(mapping[i]));
-  //     sb.append("(");
-  //     // sb.append(FrequencyCounter.EXPECTED_RELATIVE_FREQ[mapping[i]]);
-  //     sb.append(englishNorm[i]);
-  //     sb.append(")");
-  //     System.out.println(sb.toString());
-  //   }
+    assertEquals(0.080826, plainDistrib[0], TOLERANCE);
+    assertEquals(0.122872, plainDistrib[4], TOLERANCE);
+  }
 
-  //   String remapped = fa.decipherAndRemap(englishNorm);
-  //   System.out.println(remapped);
-  // }
+  @Test
+  public void testReadCipher() throws IOException
+  {
+    File cipherFile = new File(this.getClass().getResource("/Exercise1Ciphertext.txt").getFile());
+
+    FrequencyAnalysis fa = new FrequencyAnalysis();
+    fa.readCipher(cipherFile);
+
+    double[] cipherDistrib = fa.getCipherTextDistribution();
+
+    assertEquals(0.02658, cipherDistrib[0], TOLERANCE);
+    assertEquals(0.07774, cipherDistrib[4], TOLERANCE);
+  }
 }
