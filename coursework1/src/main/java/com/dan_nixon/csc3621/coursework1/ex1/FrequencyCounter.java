@@ -2,9 +2,7 @@ package com.dan_nixon.csc3621.coursework1.ex1;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.System;
 import java.lang.StringBuilder;
 import java.lang.IllegalArgumentException;
 import com.dan_nixon.csc3621.coursework1.Utils;
@@ -16,27 +14,47 @@ public class FrequencyCounter
     m_occurrences = new int[26];
   }
 
-  public void count(File file) throws IOException, FileNotFoundException
+  /**
+   * Counts all occurrences of English alphabetical characters in a file.
+   *
+   * Capitalisation is ignored.
+   *
+   * @param file File to read
+   */
+  public void count(File file) throws IOException
   {
     FileInputStream fs = new FileInputStream(file);
     while (fs.available() > 0) {
       char c = (char) fs.read();
       try
       {
+        // Increment count of this character
         m_occurrences[Utils.getIndexFromChar(c)]++;
       }
       catch (IllegalArgumentException ex)
       {
+        // Ignore this character
         continue;
       }
     }
   }
 
+  /**
+   * Gets the number of recorded occurrences of a character.
+   *
+   * @param c Character to get occurrences of
+   * @return Number of occurrences
+   */
   public int occurrences(char c) throws IllegalArgumentException
   {
     return m_occurrences[Utils.getIndexFromChar(c)];
   }
 
+  /**
+   * Calculates the total number of characters recorded.
+   *
+   * @return Total recorded character count
+   */
   public int totalCount()
   {
     int total = 0;
@@ -45,6 +63,12 @@ public class FrequencyCounter
     return total;
   }
 
+  /**
+   * Creates a normalised probability distribution by dividing the occurrence
+   * of each character by the total count for all characters.
+   *
+   * @return Probability distribution normalised to 1.0
+   */
   public double[] normalise()
   {
     double total = (double) totalCount();

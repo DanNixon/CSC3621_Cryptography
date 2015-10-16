@@ -59,6 +59,8 @@ public class UtilsTest
     assertEquals('a', Utils.rotateChar('z', 1));
     assertEquals('e', Utils.rotateChar('z', 5));
     assertEquals('a', Utils.rotateChar('x', 3));
+    assertEquals('b', Utils.rotateChar('d', -2));
+    assertEquals('z', Utils.rotateChar('d', -4));
   }
 
   @Test
@@ -73,22 +75,5 @@ public class UtilsTest
     assertArrayEquals(new double[] {3.0, 4.0, 5.0, 1.0, 2.0},
                       Utils.rotateArray(a, 3),
                       TOLERANCE);
-  }
-
-  @Test
-  public void testClosestMatchDataset1()
-  {
-    double[] data = {1.0, 2.0, 3.0, 4.0};
-    assertEquals(0, Utils.getClosestMatch(data, 1.0));
-    assertEquals(1, Utils.getClosestMatch(data, 2.0));
-    assertEquals(2, Utils.getClosestMatch(data, 3.0));
-    assertEquals(3, Utils.getClosestMatch(data, 4.0));
-    assertEquals(2, Utils.getClosestMatch(data, 3.2));
-    assertEquals(2, Utils.getClosestMatch(data, 3.5));
-    assertEquals(0, Utils.getClosestMatch(data, 0.0));
-    assertEquals(3, Utils.getClosestMatch(data, 9.0));
-    assertEquals(2, Utils.getClosestMatch(data, 2.7));
-    assertEquals(1, Utils.getClosestMatch(data, 1.9));
-    assertEquals(0, Utils.getClosestMatch(data, 1.1));
   }
 }

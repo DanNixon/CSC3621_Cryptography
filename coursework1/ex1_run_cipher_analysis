@@ -1,0 +1,6 @@
+#!/bin/bash
+
+CIPHER_FILE=src/test/resources/Exercise1Ciphertext.txt
+PLAIN_FILE=src/test/resources/pg1661.txt
+
+java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex1.Analysis cipher $CIPHER_FILE $PLAIN_FILE

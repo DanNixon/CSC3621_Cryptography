@@ -1,12 +1,7 @@
 package com.dan_nixon.csc3621.coursework1.ex1;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.System;
-import java.lang.StringBuilder;
-import java.lang.IllegalArgumentException;
 import com.dan_nixon.csc3621.coursework1.Utils;
 
 public class FrequencyAnalysis
@@ -17,7 +12,13 @@ public class FrequencyAnalysis
     m_cipherDistrib = null;
   }
 
-  public void readPlainText(File[] files) throws IOException, FileNotFoundException
+  /**
+   * Reads a series of plain text files to create a normal plain text
+   * probability distribution for alphabetical characters.
+   *
+   * @param files Array of files to read
+   */
+  public void readPlainText(File[] files) throws IOException
   {
     FrequencyCounter fc = new FrequencyCounter();
     for (int i = 0; i < files.length; i++)
@@ -25,23 +26,45 @@ public class FrequencyAnalysis
     m_plainDistrib = fc.normalise();
   }
 
-  public void readCipher(File file) throws IOException, FileNotFoundException
+  /**
+   * Reads a cipher file and creates a probability distribution for
+   * alphabetical characters.
+   *
+   * @param file Cipher text file to read
+   */
+  public void readCipher(File file) throws IOException
   {
     FrequencyCounter fc = new FrequencyCounter();
     fc.count(file);
     m_cipherDistrib = fc.normalise();
   }
 
+  /**
+   * Gets the plain text probability distribution.
+   *
+   * @return Array of probability for alphabetical characters normalised to 1.0
+   */
   public double[] getPlainTextDistribution()
   {
     return m_plainDistrib;
   }
 
+  /**
+   * Gets the cipher text probability distribution.
+   *
+   * @return Array of probability for alphabetical characters normalised to 1.0
+   */
   public double[] getCipherTextDistribution()
   {
     return m_cipherDistrib;
   }
 
+  /**
+   * Performs brute force analysis to check for a shift (rotational) cipher
+   * and returns the most likely shift offset (key).
+   *
+   * @return Most likely shift offset (key)
+   */
   public int rotationAnalysis()
   {
     int bestFitRotation = 0;

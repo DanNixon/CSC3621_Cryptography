@@ -10,7 +10,9 @@ script:
   - cd coursework1
   - mvn install -DskipTests=true
   - mvn test
-  - ./run_analysis
+  - ./ex1_run_frequency_analysis
+  - ./ex1_run_cipher_analysis
+  - ./ex1_run_rotation_decipher
 
 notifications:
   email:
