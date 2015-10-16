@@ -74,6 +74,7 @@ public class Analysis
     // Output probability distributions of plain and cipher text characters
     System.out.println("Cryptanalysis results:");
     System.out.println("(probability distribution normalised to 1.0)");
+    System.out.println("PLAINTEXT\t\t-   -\tCIPHERTEXT");
     for (int i = 0; i < plainDistrib.length; i++)
     {
       StringBuilder sb = new StringBuilder();
