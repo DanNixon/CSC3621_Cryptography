@@ -1,0 +1,17 @@
+#!/bin/bash
+
+KEY=ncl
+
+PLAIN_FILE=src/test/resources/pg1661.txt
+TEMP_CIPHER_FILE=cipher.txt
+
+java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex2.VigenereApp encrypt $KEY $PLAIN_FILE > $TEMP_CIPHER_FILE
+
+echo "CIPHER TEXT:"
+cat $TEMP_CIPHER_FILE
+
+echo
+echo "DECIPHERED PLAIN TEXT:"
+java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex2.VigenereApp decrypt $KEY $TEMP_CIPHER_FILE
+
+rm $TEMP_CIPHER_FILE
