@@ -12,3 +12,9 @@ buildNumber.properties
 # TeX stuff
 *.aux
 *.log
+*.bbl
+*.bcf
+*.out
+*.pyg
+*.xml
+*.blg

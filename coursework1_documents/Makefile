@@ -2,6 +2,8 @@ TEX_COMPILER=xelatex
 BIB_COMPILER=biber
 GLOSSARIES_COMPILER=makeglossaries
 
+TEX_FLAGS=-shell-escape -halt-on-error
+
 DOCUMENT_SOURCE=$(wildcard *.tex)
 DOCUMENT_PDF=$(DOCUMENT_SOURCE:.tex=.pdf)
 
@@ -37,8 +39,11 @@ clean:
 	- $(RM) *.pyg
 
 %.pdf: %.tex
-	$(TEX_COMPILER) -shell-escape $<
-	# $(TEX_COMPILER) -shell-escape $<
+	$(TEX_COMPILER) $(TEX_FLAGS) $<
+  ifneq ("$(wildcard $(subst .tex,.bib,$<))","")
+		$(BIB_COMPILER) $(subst .tex,,$<)
+		$(TEX_COMPILER) $(TEX_FLAGS) $<
+  endif
 
 images_1: $(IMAGES_1)
 

@@ -1,0 +1,6 @@
+Cryptanalysis results:
+(probability distribution normalised to 1.0)
+PLAINTEXT             -   - CIPHERTEXT
+[...]
+
+Best fit rotation: 4
