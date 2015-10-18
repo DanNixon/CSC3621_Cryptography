@@ -15,8 +15,6 @@ script:
   - ./ex1_run_rotation_decipher
   # - ./ex2_run_cipher_decipher_cycle
   - ./ex2_compare_ciphertext_frequencies
-  - cd ../coursework1_documents
-  - make
 
 notifications:
   email:
