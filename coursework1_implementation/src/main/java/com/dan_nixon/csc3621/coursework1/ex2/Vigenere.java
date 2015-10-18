@@ -1,5 +1,7 @@
 package com.dan_nixon.csc3621.coursework1.ex2;
 
+import java.io.File;
+import java.io.IOException;
 import com.dan_nixon.csc3621.coursework1.Utils;
 
 public class Vigenere
@@ -21,6 +23,18 @@ public class Vigenere
   }
 
   /**
+   * Encrypt a message read from a file with the preset key.
+   *
+   * @param plainTextFile The file containing plain text
+   * @return Cipher text
+   */
+  public String encrypt(File plainTextFile) throws IOException
+  {
+    String plainText = Utils.readFileToString(plainTextFile);
+    return encrypt(plainText);
+  }
+
+  /**
    * Decrypt a message with the preset key.
    *
    * @param cipherText Cipher text to decrypt
@@ -29,6 +43,18 @@ public class Vigenere
   public String decrypt(String cipherText)
   {
     return process(cipherText, -1);
+  }
+
+  /**
+   * Decrypt a message read from a file with the preset key.
+   *
+   * @param cipherTextFile The file containing cipher text
+   * @return Plain text
+   */
+  public String decrypt(File cipherTextFile) throws IOException
+  {
+    String cipherText = Utils.readFileToString(cipherTextFile);
+    return decrypt(cipherText);
   }
 
   /**

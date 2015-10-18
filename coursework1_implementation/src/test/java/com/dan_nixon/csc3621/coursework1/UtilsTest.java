@@ -2,6 +2,9 @@ package com.dan_nixon.csc3621.coursework1;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import com.dan_nixon.csc3621.coursework1.Utils;
 
 public class UtilsTest
@@ -75,5 +78,13 @@ public class UtilsTest
     assertArrayEquals(new double[] {3.0, 4.0, 5.0, 1.0, 2.0},
                       Utils.rotateArray(a, 3),
                       TOLERANCE);
+  }
+
+  @Test public void testReadFileToString() throws IOException
+  {
+    URL url = this.getClass().getResource("/test_text_1.txt");
+    File file = new File(url.getFile());
+    String str = Utils.readFileToString(file);
+    assertEquals("abcdefghijklmnopqrstuvwxyz\n", str);
   }
 }

@@ -1,5 +1,10 @@
 package com.dan_nixon.csc3621.coursework1;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.lang.StringBuilder;
+
 public class Utils
 {
   /**
@@ -67,5 +72,22 @@ public class Utils
       out[newIdx] = in[i];
     }
     return out;
+  }
+
+  /**
+   * Reads the contents of a file and generates a String.
+   *
+   * @param file The file to read
+   * @return A string read from the file
+   */
+  public static String readFileToString(File file) throws IOException
+  {
+    StringBuilder sb = new StringBuilder();
+    FileInputStream fs = new FileInputStream(file);
+    while (fs.available() > 0) {
+      char c = (char) fs.read();
+      sb.append(c);
+    }
+    return sb.toString();
   }
 }
