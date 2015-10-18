@@ -10,6 +10,24 @@ import com.dan_nixon.csc3621.coursework1.ex2.Vigenere;
 public class VigenereTest
 {
   @Test
+  public void testCreate()
+  {
+    Vigenere v = new Vigenere("ncl");
+  }
+
+  @Test(expected=IllegalArgumentException.class)
+  public void testCreateWithEmptyKey()
+  {
+    Vigenere v = new Vigenere("");
+  }
+
+  @Test(expected=IllegalArgumentException.class)
+  public void testCreateWithInvalidKey()
+  {
+    Vigenere v = new Vigenere("nc1");
+  }
+
+  @Test
   public void testEncrypt()
   {
     String key = "ncl";

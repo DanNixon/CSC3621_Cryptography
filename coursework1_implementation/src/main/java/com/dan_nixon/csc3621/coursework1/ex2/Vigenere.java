@@ -6,8 +6,23 @@ import com.dan_nixon.csc3621.coursework1.Utils;
 
 public class Vigenere
 {
-  Vigenere(String key)
+  /**
+   * Creates a new Vigenere encryption/decription with a given key.
+   *
+   * @param key Key to use, must be at least one character and only contain
+   *            letters a-z
+   */
+  Vigenere(String key) throws IllegalArgumentException
   {
+    if (key.isEmpty())
+      throw new IllegalArgumentException("Key cannot have zero length");
+
+    for (char c : key.toCharArray())
+    {
+      if (!Character.isLetter(c))
+        throw new IllegalArgumentException("Invalid character found in key");
+    }
+
     m_key = key.toCharArray();
   }
 
