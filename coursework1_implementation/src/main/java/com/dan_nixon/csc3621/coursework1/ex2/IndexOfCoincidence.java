@@ -37,15 +37,27 @@ public class IndexOfCoincidence
    * Calculate the index of coincidence for a given file using the normalised
    * probability distribution of English alphabetical characters.
    *
-   * @param file The file to read
+   * @param file File to read
    */
   public void calculate(File file) throws IOException
   {
+    File[] files = {file};
+    calculate(files);
+  }
+
+  /**
+   * Calculate the index of coincidence for a series of files using the
+   * normalised probability distribution of English alphabetical characters.
+   *
+   * @param files Array of files to read
+   */
+  public void calculate(File[] files) throws IOException
+  {
     FrequencyCounter fc = new FrequencyCounter();
-    fc.count(file);
+    for (File file : files)
+      fc.count(file);
     m_distribution = fc.normalise();
 
-    //TODO
     for (double p : m_distribution)
       m_indexOfCoincidence += p * p;
   }
