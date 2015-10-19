@@ -31,7 +31,7 @@ public class FrequencyAnalysisTest
   public void testReadMultiplePlain() throws IOException
   {
     File plainFile1 = new File(this.getClass().getResource("/pg1661.txt").getFile());
-    File plainFile2 = new File(this.getClass().getResource("/test_text_1.txt").getFile());
+    File plainFile2 = new File(this.getClass().getResource("/test_ex1_text1.txt").getFile());
     File[] plainFiles = {plainFile1, plainFile2};
 
     FrequencyAnalysis fa = new FrequencyAnalysis();

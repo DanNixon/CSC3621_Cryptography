@@ -36,7 +36,7 @@ public class FrequencyCounterTest
   @Test
   public void testReadSimpleFile() throws IOException
   {
-    URL url = this.getClass().getResource("/test_text_1.txt");
+    URL url = this.getClass().getResource("/test_ex1_text1.txt");
     File file = new File(url.getFile());
 
     FrequencyCounter fa = new FrequencyCounter();
@@ -54,7 +54,7 @@ public class FrequencyCounterTest
   @Test
   public void testReadFileWithAllDifferentCounts() throws IOException
   {
-    URL url = this.getClass().getResource("/test_text_2.txt");
+    URL url = this.getClass().getResource("/test_ex1_text2.txt");
     File file = new File(url.getFile());
 
     FrequencyCounter fa = new FrequencyCounter();
@@ -73,7 +73,7 @@ public class FrequencyCounterTest
   @Test
   public void testNormalise() throws IOException
   {
-    URL url = this.getClass().getResource("/test_text_2.txt");
+    URL url = this.getClass().getResource("/test_ex1_text2.txt");
     File file = new File(url.getFile());
 
     FrequencyCounter fa = new FrequencyCounter();

@@ -82,7 +82,7 @@ public class UtilsTest
 
   @Test public void testReadFileToString() throws IOException
   {
-    URL url = this.getClass().getResource("/test_text_1.txt");
+    URL url = this.getClass().getResource("/test_ex1_text1.txt");
     File file = new File(url.getFile());
     String str = Utils.readFileToString(file);
     assertEquals("abcdefghijklmnopqrstuvwxyz\n", str);
