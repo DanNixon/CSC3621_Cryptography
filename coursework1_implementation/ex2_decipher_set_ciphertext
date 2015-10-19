@@ -1,0 +1,7 @@
+#!/bin/bash
+
+KEY=plato
+CIPHER_FILE=src/test/resources/Exercise2Ciphertext.txt
+
+echo "DECIPHERED PLAIN TEXT:"
+java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex2.VigenereApp decrypt $KEY $CIPHER_FILE
