@@ -52,6 +52,21 @@ public class FrequencyCounterTest
   }
 
   @Test
+  public void testReadString()
+  {
+    FrequencyCounter fa = new FrequencyCounter();
+    fa.count("abcdefghijklmnopqrstuvwxyz");
+
+    for (int i = 97; i < 123; i++)
+    {
+      char c = (char) i;
+      assertEquals(1, fa.occurrences(c));
+    }
+
+    assertEquals(26, fa.totalCount());
+  }
+
+  @Test
   public void testReadFileWithAllDifferentCounts() throws IOException
   {
     URL url = this.getClass().getResource("/test_ex1_text2.txt");

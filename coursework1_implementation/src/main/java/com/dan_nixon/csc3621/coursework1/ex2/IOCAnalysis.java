@@ -8,6 +8,24 @@ import com.dan_nixon.csc3621.coursework1.ex1.FrequencyCounter;
 
 public class IOCAnalysis
 {
+  public static double calculateIndexOfCoincidence(FrequencyCounter count)
+  {
+    int[] counts = count.occurrences();
+    double total = count.totalCount();
+
+    double num = 0.0;
+    for (int i = 0; i < 26; i++)
+    {
+      double c = counts[i];
+      num += c * (c - 1);
+    }
+
+    double denom = total * (total - 1);
+    double indexOfCoincidence = num / denom;
+
+    return indexOfCoincidence;
+  }
+
   /**
    * Create anew instance of the analysis tool.
    *
@@ -28,9 +46,7 @@ public class IOCAnalysis
    */
   public void setPlainTextCount(FrequencyCounter plainCount)
   {
-    IndexOfCoincidence ioc = new IndexOfCoincidence();
-    ioc.calculate(plainCount);
-    m_plainIoC = ioc.indexOfCoincidence();
+    m_plainIoC = calculateIndexOfCoincidence(plainCount);
   }
 
   /**
@@ -41,9 +57,7 @@ public class IOCAnalysis
    */
   public void setCipherTextCount(FrequencyCounter cipherCount)
   {
-    IndexOfCoincidence ioc = new IndexOfCoincidence();
-    ioc.calculate(cipherCount);
-    m_cipherIoC = ioc.indexOfCoincidence();
+    m_cipherIoC = calculateIndexOfCoincidence(cipherCount);
   }
 
   /**

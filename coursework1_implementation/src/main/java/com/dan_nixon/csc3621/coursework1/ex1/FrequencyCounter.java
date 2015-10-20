@@ -15,6 +15,30 @@ public class FrequencyCounter
   }
 
   /**
+   * Counts all occurrences of English alphabetical characters in a string.
+   *
+   * Capitalisation is ignored.
+   *
+   * @param str String to read
+   */
+  public void count(String str)
+  {
+    for (char c : str.toCharArray())
+    {
+      try
+      {
+        // Increment count of this character
+        m_occurrences[Utils.getIndexFromChar(c)]++;
+      }
+      catch (IllegalArgumentException ex)
+      {
+        // Ignore this character
+        continue;
+      }
+    }
+  }
+
+  /**
    * Counts all occurrences of English alphabetical characters in a file.
    *
    * Capitalisation is ignored.
@@ -24,7 +48,8 @@ public class FrequencyCounter
   public void count(File file) throws IOException
   {
     FileInputStream fs = new FileInputStream(file);
-    while (fs.available() > 0) {
+    while (fs.available() > 0)
+    {
       char c = (char) fs.read();
       try
       {
@@ -62,6 +87,16 @@ public class FrequencyCounter
   public int occurrences(char c) throws IllegalArgumentException
   {
     return m_occurrences[Utils.getIndexFromChar(c)];
+  }
+
+  /**
+   * Gets the total occurance counts.
+   *
+   * @return Number of occurrences for each character
+   */
+  public int[] occurrences()
+  {
+    return m_occurrences;
   }
 
   /**
