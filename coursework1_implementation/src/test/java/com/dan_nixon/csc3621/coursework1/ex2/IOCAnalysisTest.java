@@ -33,7 +33,7 @@ public class IOCAnalysisTest
   public void testReadFiles() throws IOException
   {
     File plainFile = new File(this.getClass().getResource("/pg1661.txt").getFile());
-    File cipherFile = new File(this.getClass().getResource("/Exercise2Ciphertext.txt").getFile());
+    File cipherFile = new File(this.getClass().getResource("/test_ex2_cipher.txt").getFile());
 
     FrequencyCounter plainCount = new FrequencyCounter();
     plainCount.count(plainFile);
@@ -52,7 +52,7 @@ public class IOCAnalysisTest
   public void testAnalysis() throws IOException
   {
     File plainFile = new File(this.getClass().getResource("/pg1661.txt").getFile());
-    File cipherFile = new File(this.getClass().getResource("/Exercise2Ciphertext.txt").getFile());
+    File cipherFile = new File(this.getClass().getResource("/test_ex2_cipher.txt").getFile());
 
     FrequencyCounter plainCount = new FrequencyCounter();
     plainCount.count(plainFile);
@@ -66,6 +66,6 @@ public class IOCAnalysisTest
     System.out.println(ioca.getCipherTextIoC());
 
     int keySize = ioca.obtainKeySize();
-    // assertEquals(5, keySize);
+    assertEquals(3, keySize);
   }
 }

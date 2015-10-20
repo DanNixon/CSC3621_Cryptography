@@ -49,6 +49,19 @@ public class IndexOfCoincidenceTest
   }
 
   @Test
+  public void testIoCCalculationCipherText() throws IOException
+  {
+    File file = new File(this.getClass().getResource("/test_ex2_cipher.txt").getFile());
+    FrequencyCounter fc = new FrequencyCounter();
+    fc.count(file);
+
+    IndexOfCoincidence ioc = new IndexOfCoincidence();
+    ioc.calculate(fc);
+
+    assertEquals(0.0467, ioc.indexOfCoincidence(), TOLERANCE);
+  }
+
+  @Test
   public void testIoCCalculationMultipleFiles() throws IOException
   {
     File file1 = new File(this.getClass().getResource("/test_ex1_text1.txt").getFile());

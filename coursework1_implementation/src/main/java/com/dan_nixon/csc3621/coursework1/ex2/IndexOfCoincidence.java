@@ -41,6 +41,7 @@ public class IndexOfCoincidence
    */
   public void calculate(FrequencyCounter counter)
   {
+    m_indexOfCoincidence = 0.0;
     m_distribution = counter.normalise();
 
     for (double p : m_distribution)
