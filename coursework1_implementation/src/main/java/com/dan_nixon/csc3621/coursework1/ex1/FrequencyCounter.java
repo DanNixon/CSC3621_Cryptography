@@ -40,6 +40,20 @@ public class FrequencyCounter
   }
 
   /**
+   * Counts all occurrences of English alphabetical characters in a set of
+   * files.
+   *
+   * Capitalisation is ignored.
+   *
+   * @param file File to read
+   */
+  public void count(File[] files) throws IOException
+  {
+    for (File file : files)
+      count(file);
+  }
+
+  /**
    * Gets the number of recorded occurrences of a character.
    *
    * @param c Character to get occurrences of

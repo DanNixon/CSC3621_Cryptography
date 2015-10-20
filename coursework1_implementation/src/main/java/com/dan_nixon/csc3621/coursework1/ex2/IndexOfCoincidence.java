@@ -2,7 +2,6 @@ package com.dan_nixon.csc3621.coursework1.ex2;
 
 import java.io.File;
 import java.io.IOException;
-import com.dan_nixon.csc3621.coursework1.Utils;
 import com.dan_nixon.csc3621.coursework1.ex1.FrequencyCounter;
 
 public class IndexOfCoincidence
@@ -34,29 +33,15 @@ public class IndexOfCoincidence
   }
 
   /**
-   * Calculate the index of coincidence for a given file using the normalised
-   * probability distribution of English alphabetical characters.
+   * Calculate the index of coincidence for the distribution counted by a
+   * FrequencyCounter using the normalised probability distribution of English
+   * alphabetical characters.
    *
-   * @param file File to read
+   * @param counter The counts to use
    */
-  public void calculate(File file) throws IOException
+  public void calculate(FrequencyCounter counter)
   {
-    File[] files = {file};
-    calculate(files);
-  }
-
-  /**
-   * Calculate the index of coincidence for a series of files using the
-   * normalised probability distribution of English alphabetical characters.
-   *
-   * @param files Array of files to read
-   */
-  public void calculate(File[] files) throws IOException
-  {
-    FrequencyCounter fc = new FrequencyCounter();
-    for (File file : files)
-      fc.count(file);
-    m_distribution = fc.normalise();
+    m_distribution = counter.normalise();
 
     for (double p : m_distribution)
       m_indexOfCoincidence += p * p;

@@ -13,30 +13,23 @@ public class FrequencyAnalysis
   }
 
   /**
-   * Reads a series of plain text files to create a normal plain text
-   * probability distribution for alphabetical characters.
+   * Loads a character count for plain text.
    *
-   * @param files Array of files to read
+   * @param plainCount Plain text count
    */
-  public void readPlainText(File[] files) throws IOException
+  public void setPlainTextCount(FrequencyCounter plainCount)
   {
-    FrequencyCounter fc = new FrequencyCounter();
-    for (int i = 0; i < files.length; i++)
-      fc.count(files[i]);
-    m_plainDistrib = fc.normalise();
+    m_plainDistrib = plainCount.normalise();
   }
 
   /**
-   * Reads a cipher file and creates a probability distribution for
-   * alphabetical characters.
+   * Loads a character count for cipher text.
    *
-   * @param file Cipher text file to read
+   * @param cipherCount Cipher text count
    */
-  public void readCipher(File file) throws IOException
+  public void setCipherTextCount(FrequencyCounter cipherCount)
   {
-    FrequencyCounter fc = new FrequencyCounter();
-    fc.count(file);
-    m_cipherDistrib = fc.normalise();
+    m_cipherDistrib = cipherCount.normalise();
   }
 
   /**

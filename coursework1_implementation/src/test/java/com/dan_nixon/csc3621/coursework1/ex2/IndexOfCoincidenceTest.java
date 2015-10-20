@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import com.dan_nixon.csc3621.coursework1.ex2.IndexOfCoincidence;
+import com.dan_nixon.csc3621.coursework1.ex1.FrequencyCounter;
 
 public class IndexOfCoincidenceTest
 {
@@ -23,9 +24,11 @@ public class IndexOfCoincidenceTest
   public void testIoCCalculationPlainText() throws IOException
   {
     File file = new File(this.getClass().getResource("/pg1661.txt").getFile());
+    FrequencyCounter fc = new FrequencyCounter();
+    fc.count(file);
 
     IndexOfCoincidence ioc = new IndexOfCoincidence();
-    ioc.calculate(file);
+    ioc.calculate(fc);
 
     // Plain English text should have IC~=0.065
     assertEquals(0.065, ioc.indexOfCoincidence(), TOLERANCE);
@@ -35,9 +38,11 @@ public class IndexOfCoincidenceTest
   public void testIoCCalculationEvenText() throws IOException
   {
     File file = new File(this.getClass().getResource("/test_ex1_text1.txt").getFile());
+    FrequencyCounter fc = new FrequencyCounter();
+    fc.count(file);
 
     IndexOfCoincidence ioc = new IndexOfCoincidence();
-    ioc.calculate(file);
+    ioc.calculate(fc);
 
     // Random (linear distribution) text should have IC~=0.038
     assertEquals(0.038, ioc.indexOfCoincidence(), TOLERANCE);
@@ -49,9 +54,11 @@ public class IndexOfCoincidenceTest
     File file1 = new File(this.getClass().getResource("/test_ex1_text1.txt").getFile());
     File file2 = new File(this.getClass().getResource("/pg1661.txt").getFile());
     File[] files = {file1, file2};
+    FrequencyCounter fc = new FrequencyCounter();
+    fc.count(files);
 
     IndexOfCoincidence ioc = new IndexOfCoincidence();
-    ioc.calculate(files);
+    ioc.calculate(fc);
 
     // The counts of the true plain English file far outweigh those in the even
     // distribution so this value of IC is expected

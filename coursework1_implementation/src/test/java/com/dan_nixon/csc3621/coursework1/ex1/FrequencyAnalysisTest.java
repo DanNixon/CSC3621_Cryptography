@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import com.dan_nixon.csc3621.coursework1.ex1.FrequencyAnalysis;
+import com.dan_nixon.csc3621.coursework1.ex1.FrequencyCounter;
 
 public class FrequencyAnalysisTest
 {
@@ -15,11 +16,13 @@ public class FrequencyAnalysisTest
   @Test
   public void testReadPlain() throws IOException
   {
-    File plainFile1 = new File(this.getClass().getResource("/pg1661.txt").getFile());
-    File[] plainFiles = {plainFile1};
+    File plainFile = new File(this.getClass().getResource("/pg1661.txt").getFile());
+
+    FrequencyCounter plainCount = new FrequencyCounter();
+    plainCount.count(plainFile);
 
     FrequencyAnalysis fa = new FrequencyAnalysis();
-    fa.readPlainText(plainFiles);
+    fa.setPlainTextCount(plainCount);
 
     double[] plainDistrib = fa.getPlainTextDistribution();
 
@@ -34,8 +37,11 @@ public class FrequencyAnalysisTest
     File plainFile2 = new File(this.getClass().getResource("/test_ex1_text1.txt").getFile());
     File[] plainFiles = {plainFile1, plainFile2};
 
+    FrequencyCounter plainCount = new FrequencyCounter();
+    plainCount.count(plainFiles);
+
     FrequencyAnalysis fa = new FrequencyAnalysis();
-    fa.readPlainText(plainFiles);
+    fa.setPlainTextCount(plainCount);
 
     double[] plainDistrib = fa.getPlainTextDistribution();
 
@@ -48,8 +54,11 @@ public class FrequencyAnalysisTest
   {
     File cipherFile = new File(this.getClass().getResource("/Exercise1Ciphertext.txt").getFile());
 
+    FrequencyCounter cipherCount = new FrequencyCounter();
+    cipherCount.count(cipherFile);
+
     FrequencyAnalysis fa = new FrequencyAnalysis();
-    fa.readCipher(cipherFile);
+    fa.setCipherTextCount(cipherCount);
 
     double[] cipherDistrib = fa.getCipherTextDistribution();
 
@@ -60,13 +69,17 @@ public class FrequencyAnalysisTest
   @Test
   public void testRotationAnalysis() throws IOException
   {
-    File plainFile1 = new File(this.getClass().getResource("/pg1661.txt").getFile());
-    File[] plainFiles = {plainFile1};
+    File plainFile = new File(this.getClass().getResource("/pg1661.txt").getFile());
     File cipherFile = new File(this.getClass().getResource("/Exercise1Ciphertext.txt").getFile());
 
+    FrequencyCounter plainCount = new FrequencyCounter();
+    plainCount.count(plainFile);
+    FrequencyCounter cipherCount = new FrequencyCounter();
+    cipherCount.count(cipherFile);
+
     FrequencyAnalysis fa = new FrequencyAnalysis();
-    fa.readPlainText(plainFiles);
-    fa.readCipher(cipherFile);
+    fa.setPlainTextCount(plainCount);
+    fa.setCipherTextCount(cipherCount);
 
     fa.rotationAnalysis();
   }

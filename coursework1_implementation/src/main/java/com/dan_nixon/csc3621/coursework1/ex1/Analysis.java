@@ -38,8 +38,12 @@ public class Analysis
   private static void runFreqAnalysisMode(File[] plainFiles) throws IOException
   {
     // Process plain text files and get probability distribution
+    FrequencyCounter plainCount = new FrequencyCounter();
+    plainCount.count(plainFiles);
+
     FrequencyAnalysis fa = new FrequencyAnalysis();
-    fa.readPlainText(plainFiles);
+    fa.setPlainTextCount(plainCount);
+
     double[] plainDistrib = fa.getPlainTextDistribution();
 
     // Output probability distribution
@@ -65,9 +69,15 @@ public class Analysis
   private static void runCipherAnalysisMode(File[] plainFiles, File cipherFile) throws IOException
   {
     // Load files and get probability distributions
+    FrequencyCounter plainCount = new FrequencyCounter();
+    plainCount.count(plainFiles);
+    FrequencyCounter cipherCount = new FrequencyCounter();
+    cipherCount.count(cipherFile);
+
     FrequencyAnalysis fa = new FrequencyAnalysis();
-    fa.readPlainText(plainFiles);
-    fa.readCipher(cipherFile);
+    fa.setPlainTextCount(plainCount);
+    fa.setCipherTextCount(cipherCount);
+
     double[] plainDistrib = fa.getPlainTextDistribution();
     double[] cipherDistrib = fa.getCipherTextDistribution();
 

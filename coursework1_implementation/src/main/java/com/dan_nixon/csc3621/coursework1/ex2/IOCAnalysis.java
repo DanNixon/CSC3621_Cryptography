@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.io.File;
 import java.io.IOException;
-import com.dan_nixon.csc3621.coursework1.Utils;
+import com.dan_nixon.csc3621.coursework1.ex1.FrequencyCounter;
 
 public class IOCAnalysis
 {
@@ -21,28 +21,28 @@ public class IOCAnalysis
   }
 
   /**
-   * Reads a series of plain text files to create a normal plain text
-   * probability distribution for alphabetical characters.
+   * Sets the normal plain text probability distribution for alphabetical
+   * characters using counts from a FrequencyCounter.
    *
-   * @param files Array of files to read
+   * @param plainCount Count of plain text characters
    */
-  public void readPlainText(File[] files) throws IOException
+  public void setPlainTextCount(FrequencyCounter plainCount)
   {
     IndexOfCoincidence ioc = new IndexOfCoincidence();
-    ioc.calculate(files);
+    ioc.calculate(plainCount);
     m_plainIoC = ioc.indexOfCoincidence();
   }
 
   /**
-   * Reads a cipher file and creates a probability distribution for
-   * alphabetical characters.
+   * Sets the cipher text probability distribution for alphabetical characters
+   * using counts from a FrequencyCounter.
    *
-   * @param file Cipher text file to read
+   * @param cipherCount Count of cipher text characters
    */
-  public void readCipher(File file) throws IOException
+  public void setCipherTextCount(FrequencyCounter cipherCount)
   {
     IndexOfCoincidence ioc = new IndexOfCoincidence();
-    ioc.calculate(file);
+    ioc.calculate(cipherCount);
     m_cipherIoC = ioc.indexOfCoincidence();
   }
 
