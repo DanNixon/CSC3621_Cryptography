@@ -11,7 +11,7 @@ import com.dan_nixon.csc3621.coursework1.ex2.IOCAnalysis;
 
 public class IOCAnalysisTest
 {
-  public static final double IOC_TOLERANCE = 0.0001;
+  public static final double IOC_TOLERANCE = 0.0005;
   public static final double TOLERANCE = 0.001;
 
   @Test
@@ -75,7 +75,7 @@ public class IOCAnalysisTest
   public void testIOCToKeySize()
   {
     IOCAnalysis ioca = new IOCAnalysis(IOC_TOLERANCE);
-    int keySize = ioca.keySizeFromIoC(0.04205);
+    int keySize = ioca.keySizeFromIoC(0.0475);
     assertEquals(4, keySize);
   }
 
@@ -109,11 +109,32 @@ public class IOCAnalysisTest
     FrequencyCounter cipherCount = new FrequencyCounter();
     cipherCount.count(cipherFile);
 
-    IOCAnalysis ioca = new IOCAnalysis(0.0005);
+    IOCAnalysis ioca = new IOCAnalysis(0.005);
     ioca.setPlainTextCount(plainCount);
     ioca.setCipherTextCount(cipherCount);
 
     int keySize = ioca.obtainKeySize();
-    assertEquals(3, keySize);
+    assertEquals(0, keySize % 3);
+  }
+
+  @Test
+  public void testAnalysisCW() throws IOException
+  {
+    File plainFile = new File(this.getClass().getResource("/pg1661.txt").getFile());
+    File cipherFile = new File(this.getClass().getResource("/Exercise2Ciphertext.txt").getFile());
+
+    FrequencyCounter plainCount = new FrequencyCounter();
+    plainCount.count(plainFile);
+    FrequencyCounter cipherCount = new FrequencyCounter();
+    cipherCount.count(cipherFile);
+
+    IOCAnalysis ioca = new IOCAnalysis(0.005);
+    ioca.setPlainTextCount(plainCount);
+    ioca.setCipherTextCount(cipherCount);
+
+    assertEquals(0.0467, ioca.getCipherTextIoC(), TOLERANCE);
+
+    int keySize = ioca.obtainKeySize();
+    assertEquals(0, keySize % 3);
   }
 }

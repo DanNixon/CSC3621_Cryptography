@@ -46,25 +46,6 @@ public class VigenereAnalysisTest
   }
 
   @Test
-  public void testKeySize() throws IOException
-  {
-    File plainFile = new File(this.getClass().getResource("/pg1661.txt").getFile());
-    File cipherFile = new File(this.getClass().getResource("/test_ex2_cipher.txt").getFile());
-
-    FrequencyCounter plainCount = new FrequencyCounter();
-    plainCount.count(plainFile);
-
-    String cipherText = Utils.readFileToString(cipherFile);
-
-    VigenereAnalysis va = new VigenereAnalysis(0.0005);
-    va.setPlainTextCount(plainCount);
-    va.setCipherText(cipherText);
-
-    int keySize = va.getKeyLength();
-    assertEquals(3, keySize);
-  }
-
-  @Test
   public void testGetKey() throws IOException
   {
     File plainFile = new File(this.getClass().getResource("/pg1661.txt").getFile());

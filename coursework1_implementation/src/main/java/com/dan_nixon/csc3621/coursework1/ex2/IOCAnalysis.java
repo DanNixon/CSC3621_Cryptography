@@ -90,21 +90,21 @@ public class IOCAnalysis
   {
     Map<Double, Integer> iocToKeySize = new HashMap<Double, Integer>();
     iocToKeySize.put(getPlainTextIoC(), 0);
-    iocToKeySize.put(0.045, 1);
-    iocToKeySize.put(0.046, 2);
-    iocToKeySize.put(0.041, 2);
-    iocToKeySize.put(0.043, 3);
-    iocToKeySize.put(0.050, 3);
-    iocToKeySize.put(0.047, 3);
-    iocToKeySize.put(0.042, 4);
-    iocToKeySize.put(0.039, 4);
-    iocToKeySize.put(0.045, 4);
-    iocToKeySize.put(0.040, 4);
-    iocToKeySize.put(0.063, 5);
-    iocToKeySize.put(0.068, 5);
-    iocToKeySize.put(0.069, 5);
-    iocToKeySize.put(0.061, 5);
-    iocToKeySize.put(0.072, 5);
+    iocToKeySize.put(0.0449443523561, 1);
+    iocToKeySize.put(0.0457833618884, 2);
+    iocToKeySize.put(0.0435885364312, 3);
+    iocToKeySize.put(0.0474962292609, 4);
+    iocToKeySize.put(0.0393612078978, 5);
+    iocToKeySize.put(0.0471437059672, 6);
+    iocToKeySize.put(0.0909922589726, 7);
+    iocToKeySize.put(0.0461858974359, 8);
+    iocToKeySize.put(0.0407804755631, 9);
+    iocToKeySize.put(0.0361152882206, 10);
+    iocToKeySize.put(0.0491603339901, 11);
+    iocToKeySize.put(0.0512663398693, 12);
+    iocToKeySize.put(0.0446886446886, 13);
+    iocToKeySize.put(0.0988487702773, 14);
+    iocToKeySize.put(0.0334554334554, 15);
 
     for (Map.Entry<Double, Integer> e : iocToKeySize.entrySet())
     {

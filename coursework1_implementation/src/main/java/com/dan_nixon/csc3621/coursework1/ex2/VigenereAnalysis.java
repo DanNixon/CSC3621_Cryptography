@@ -103,9 +103,6 @@ public class VigenereAnalysis
       fa.setPlainTextCount(m_plainCount);
       fa.setCipherTextCount(fc);
 
-      System.out.println(i);
-      System.out.println(Arrays.toString(fc.normalise()));
-
       int keyCharIdx = fa.rotationAnalysis();
       char keyChar = Utils.getCharFromIndex(keyCharIdx);
       sb.append(keyChar);
