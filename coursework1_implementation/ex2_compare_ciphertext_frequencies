@@ -8,7 +8,7 @@ VIGENERE_CIPHERTEXT=cipher.txt
 SHIFT_CIPHERTEXT=src/test/resources/Exercise1Ciphertext.txt
 
 # Run Vigenere cipher on plaintext
-java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex2.VigenereApp encrypt $VIGENERE_KEY $PLAINTEXT > $VIGENERE_CIPHERTEXT
+java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex2.VigenereApp --encrypt --key $VIGENERE_KEY --file $PLAINTEXT > $VIGENERE_CIPHERTEXT
 
 # Run frequency count on sample plain text
 echo "Plain text (sample):"

@@ -1,5 +1,6 @@
 package com.dan_nixon.csc3621.coursework1.ex1;
 
+import java.util.Map;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,11 +10,13 @@ public class DecipherRotation
 {
   public static void main(String[] args) throws IOException
   {
+    Map<String, String> options = Utils.parseCommandLine(args);
+
     // Negate key to decipher
-    int rotation = -Integer.parseInt(args[0]);
+    int rotation = -Integer.parseInt(options.get("shift"));
 
     // Load cipher file
-    File cipherFile = new File(args[1]);
+    File cipherFile = new File(options.get("file"));
     FileInputStream fs = new FileInputStream(cipherFile);
 
     System.out.println("Key: " + rotation);

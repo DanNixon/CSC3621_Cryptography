@@ -1,5 +1,7 @@
 package com.dan_nixon.csc3621.coursework1;
 
+import java.util.Map;
+import java.util.HashMap;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -7,6 +9,56 @@ import java.lang.StringBuilder;
 
 public class Utils
 {
+  /**
+   * Parses the array of strings passed to main into a key/value list based on
+   * the dash and double dash options.
+   *
+   * e.g. -key 65 first_positional --encrypt --string hello positional
+   * parses to {key:65, p0:first_positional, encrypt:"", string:hello,
+   *            p1:positional}
+   *
+   * @param args Array of strings
+   * @return Map of key:value pairs
+   */
+  public static Map<String, String> parseCommandLine(String[] args)
+  {
+    Map<String, String> parsed = new HashMap<String, String>();
+    int numPositional = 0;
+
+    for(int i = 0; i < args.length; i++)
+    {
+      String str = new String(args[i]);
+      if (str.startsWith("-"))
+      {
+        // Trim off the dashes
+        int subLower = 1;
+        if (str.startsWith("--"))
+          subLower = 2;
+        str = str.substring(subLower);
+
+        // Get the value
+        String value = null;
+        if (!args[i + 1].startsWith("-"))
+        {
+          value = new String(args[i + 1]);
+          i++;
+        }
+
+        parsed.put(str, value);
+      }
+      else
+      {
+        String key = "p" + numPositional;
+        numPositional++;
+        parsed.put(key, str);
+      }
+    }
+
+    parsed.put("_num_positional", Integer.toString(numPositional));
+
+    return parsed;
+  }
+
   /**
    * Converts a character to a numerical index.
    *

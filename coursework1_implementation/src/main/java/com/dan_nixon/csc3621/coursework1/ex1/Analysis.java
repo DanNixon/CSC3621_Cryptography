@@ -1,5 +1,6 @@
 package com.dan_nixon.csc3621.coursework1.ex1;
 
+import java.util.Map;
 import java.io.File;
 import java.io.IOException;
 import com.dan_nixon.csc3621.coursework1.Utils;
@@ -9,24 +10,23 @@ public class Analysis
 {
   public static void main(String[] args) throws IOException
   {
-    String mode = args[0];
+    Map<String, String> options = Utils.parseCommandLine(args);
 
-    // Just do frequency analysis of a single file
-    if (mode.equals("frequency"))
-    {
-      File[] plainFiles = new File[args.length - 1];
-      for (int i = 1; i < args.length; i++)
-        plainFiles[i - 1] = new File(args[i]);
-      runFreqAnalysisMode(plainFiles);
-    }
+    int numPlainFiles = Integer.parseInt(options.get("_num_positional"));
+    File[] plainFiles = new File[numPlainFiles];
+    for (int i = 0; i < numPlainFiles; i++)
+      plainFiles[i] = new File(options.get("p"+i));
+
     // Do frequency analysis on two files and perform analysis on the results
-    else if (mode.equals("cipher"))
+    if (options.containsKey("cipher-file"))
     {
-      File cipherFile = new File(args[1]);
-      File[] plainFiles = new File[args.length - 2];
-      for (int i = 2; i < args.length; i++)
-        plainFiles[i - 2] = new File(args[i]);
+      File cipherFile = new File(options.get("cipher-file"));
       runCipherAnalysisMode(plainFiles, cipherFile);
+    }
+    // Just do frequency analysis of plain text
+    else
+    {
+      runFreqAnalysisMode(plainFiles);
     }
   }
 

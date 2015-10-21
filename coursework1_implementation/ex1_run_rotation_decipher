@@ -3,4 +3,4 @@
 CIPHER_FILE=src/test/resources/Exercise1Ciphertext.txt
 ROT_CIPHER_KEY=4
 
-java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex1.DecipherRotation $ROT_CIPHER_KEY $CIPHER_FILE
+java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex1.DecipherRotation --shift $ROT_CIPHER_KEY --file $CIPHER_FILE

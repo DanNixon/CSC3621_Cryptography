@@ -2,4 +2,4 @@
 
 PLAIN_FILE=src/test/resources/pg1661.txt
 
-java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex1.Analysis frequency $PLAIN_FILE
+java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex1.Analysis $PLAIN_FILE

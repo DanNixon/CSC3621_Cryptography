@@ -2,6 +2,7 @@ package com.dan_nixon.csc3621.coursework1;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.util.Map;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -10,6 +11,28 @@ import com.dan_nixon.csc3621.coursework1.Utils;
 public class UtilsTest
 {
   public static final double TOLERANCE = 0.0000000001;
+
+  @Test
+  public void testParseCommandLine()
+  {
+    String[] args = {"-key",
+                     "65",
+                     "first_positional",
+                     "--encrypt",
+                     "--string",
+                     "hello",
+                     "positional"};
+
+    Map<String, String> parsed = Utils.parseCommandLine(args);
+
+    assertEquals("2", parsed.get("_num_positional"));
+
+    assertEquals("65", parsed.get("key"));
+    assertEquals("first_positional", parsed.get("p0"));
+    assertTrue(parsed.containsKey("encrypt"));
+    assertEquals("hello", parsed.get("string"));
+    assertEquals("positional", parsed.get("p1"));
+  }
 
   @Test
   public void testGetCharIdxLowercase()
