@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import com.dan_nixon.csc3621.coursework1.Utils;
 import com.dan_nixon.csc3621.coursework1.ex1.FrequencyCounter;
 import com.dan_nixon.csc3621.coursework1.ex2.IOCAnalysis;
 
@@ -87,12 +88,12 @@ public class IOCAnalysisTest
 
     FrequencyCounter plainCount = new FrequencyCounter();
     plainCount.count(plainFile);
-    FrequencyCounter cipherCount = new FrequencyCounter();
-    cipherCount.count(cipherFile);
+
+    String cipherText = Utils.readFileToString(cipherFile);
 
     IOCAnalysis ioca = new IOCAnalysis(IOC_TOLERANCE);
     ioca.setPlainTextCount(plainCount);
-    ioca.setCipherTextCount(cipherCount);
+    ioca.setCipherText(cipherText);
 
     assertEquals(0.065, ioca.getPlainTextIoC(), TOLERANCE);
     assertEquals(0.0467, ioca.getCipherTextIoC(), TOLERANCE);
@@ -106,35 +107,41 @@ public class IOCAnalysisTest
 
     FrequencyCounter plainCount = new FrequencyCounter();
     plainCount.count(plainFile);
-    FrequencyCounter cipherCount = new FrequencyCounter();
-    cipherCount.count(cipherFile);
+
+    String cipherText = Utils.readFileToString(cipherFile);
 
     IOCAnalysis ioca = new IOCAnalysis(0.005);
     ioca.setPlainTextCount(plainCount);
-    ioca.setCipherTextCount(cipherCount);
+    ioca.setCipherText(cipherText);
 
     int keySize = ioca.obtainKeySize();
     assertEquals(0, keySize % 3);
   }
 
   @Test
-  public void testAnalysisCW() throws IOException
+  public void testAnalysisBruteForce_CW() throws IOException
   {
     File plainFile = new File(this.getClass().getResource("/pg1661.txt").getFile());
     File cipherFile = new File(this.getClass().getResource("/Exercise2Ciphertext.txt").getFile());
 
     FrequencyCounter plainCount = new FrequencyCounter();
     plainCount.count(plainFile);
-    FrequencyCounter cipherCount = new FrequencyCounter();
-    cipherCount.count(cipherFile);
+
+    String cipherText = Utils.readFileToString(cipherFile);
 
     IOCAnalysis ioca = new IOCAnalysis(0.005);
     ioca.setPlainTextCount(plainCount);
-    ioca.setCipherTextCount(cipherCount);
+    ioca.setCipherText(cipherText);
 
-    assertEquals(0.0467, ioca.getCipherTextIoC(), TOLERANCE);
+    int keySize = ioca.obtainKeySizeBruteForce(2, 5);
+    assertEquals(5, keySize);
 
-    int keySize = ioca.obtainKeySize();
-    assertEquals(0, keySize % 3);
+    assertFalse(ioca.validateKeySize(2));
+    assertFalse(ioca.validateKeySize(3));
+    assertFalse(ioca.validateKeySize(4));
+    assertTrue(ioca.validateKeySize(5));
+    assertFalse(ioca.validateKeySize(6));
+    assertFalse(ioca.validateKeySize(7));
+    assertFalse(ioca.validateKeySize(8));
   }
 }

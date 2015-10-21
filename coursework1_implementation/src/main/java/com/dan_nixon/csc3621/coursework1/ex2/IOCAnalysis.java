@@ -36,6 +36,7 @@ public class IOCAnalysis
     m_tolerance = Math.abs(tolerance);
     m_plainIoC = 0.0;
     m_cipherIoC = 0.0;
+    m_cipherText = "";
   }
 
   /**
@@ -50,20 +51,22 @@ public class IOCAnalysis
   }
 
   /**
-   * Sets the cipher text probability distribution for alphabetical characters
-   * using counts from a FrequencyCounter.
+   * Sets the cipher text.
    *
-   * @param cipherCount Count of cipher text characters
+   * @param cipherText Cipher text
    */
-  public void setCipherTextCount(FrequencyCounter cipherCount)
+  public void setCipherText(String cipherText)
   {
-    m_cipherIoC = calculateIndexOfCoincidence(cipherCount);
+    m_cipherText = cipherText;
+    FrequencyCounter fc = new FrequencyCounter();
+    fc.count(cipherText);
+    m_cipherIoC = calculateIndexOfCoincidence(fc);
   }
 
   /**
-   * Gets the plain text probability distribution.
+   * Gets the plain text index of coincidence.
    *
-   * @return Array of probability for alphabetical characters normalised to 1.0
+   * @return Index of coincidence
    */
   public double getPlainTextIoC()
   {
@@ -71,9 +74,9 @@ public class IOCAnalysis
   }
 
   /**
-   * Gets the cipher text probability distribution.
+   * Gets the cipher text index of coincidence.
    *
-   * @return Array of probability for alphabetical characters normalised to 1.0
+   * @return Index of coincidence
    */
   public double getCipherTextIoC()
   {
@@ -129,7 +132,51 @@ public class IOCAnalysis
     return keySize;
   }
 
+  /**
+   * Attempts to find the correct key size by columising the cipher text by an
+   * assumed key size and calculating the index of coincidence for each column.
+   *
+   * @param lower Lower bound of the key size search space
+   * @param upper Upper bound of the key size search space
+   * @return First valid key size found
+   */
+  public int obtainKeySizeBruteForce(int lower, int upper)
+  {
+    for (int i = lower; i <= upper; i++)
+    {
+      if (validateKeySize(i))
+        return i;
+    }
+
+    throw new RuntimeException("No valid key found");
+  }
+
+  /**
+   * Checks if a key size is valid based on the index of coincidence of the
+   * cipher text when split into n columns, where n is the assumed key size.
+   *
+   * @param keySize Assumed key size
+   * @return True if key size is valid
+   */
+  public boolean validateKeySize(int keySize)
+  {
+    String[] strings = VigenereAnalysis.splitStringIntoKeyedStrings(m_cipherText, keySize, false);
+
+    for (int i = 0; i < strings.length; i++)
+    {
+      FrequencyCounter fc = new FrequencyCounter();
+      fc.count(strings[i]);
+      double ioc = calculateIndexOfCoincidence(fc);
+      double delta = Math.abs(ioc - m_plainIoC);
+      if (delta > m_tolerance)
+        return false;
+    }
+
+    return true;
+  }
+
   private double m_tolerance;
   private double m_plainIoC;
   private double m_cipherIoC;
+  private String m_cipherText;
 }

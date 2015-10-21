@@ -81,6 +81,23 @@ public class FrequencyAnalysis
     return bestFitRotation;
   }
 
+  @Override
+  public String toString()
+  {
+    StringBuilder sb = new StringBuilder();
+    sb.append("PLAINTEXT\t\t-   -\tCIPHERTEXT\n");
+    for (int i = 0; i < m_plainDistrib.length; i++)
+    {
+      sb.append(m_plainDistrib[i]);
+      sb.append("\t- ");
+      sb.append(Utils.getCharFromIndex(i));
+      sb.append(" -\t");
+      sb.append(m_cipherDistrib[i]);
+      sb.append("\n");
+    }
+    return sb.toString();
+  }
+
   private double[] m_plainDistrib;
   private double[] m_cipherDistrib;
 }

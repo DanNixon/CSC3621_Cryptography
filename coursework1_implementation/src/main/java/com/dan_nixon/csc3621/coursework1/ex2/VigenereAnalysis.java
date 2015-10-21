@@ -50,7 +50,6 @@ public class VigenereAnalysis
   {
     m_tolerance = tolerance;
     m_plainCount = null;
-    m_cipherCount = null;
     m_cipherText = "";
   }
 
@@ -72,28 +71,13 @@ public class VigenereAnalysis
   public void setCipherText(String cipherText)
   {
     m_cipherText = cipherText;
-    m_cipherCount = new FrequencyCounter();
-    m_cipherCount.count(m_cipherText);
   }
 
-  /**
-   * Obtains the most likely key length.
-   *
-   * @return Key length
-   */
-  public int getKeyLength()
-  {
-    IOCAnalysis ioca = new IOCAnalysis(m_tolerance);
-    ioca.setPlainTextCount(m_plainCount);
-    ioca.setCipherTextCount(m_cipherCount);
-    return ioca.obtainKeySize();
-  }
-
-  public String obtainKey(int keySize)
+  public FrequencyAnalysis[] frequencyAnalysis(int keySize)
   {
     String[] strings = splitStringIntoKeyedStrings(m_cipherText, keySize, true);
+    FrequencyAnalysis[] fas = new FrequencyAnalysis[keySize];
 
-    StringBuilder sb = new StringBuilder();
     for (int i = 0; i < keySize; i++)
     {
       FrequencyCounter fc = new FrequencyCounter();
@@ -103,7 +87,20 @@ public class VigenereAnalysis
       fa.setPlainTextCount(m_plainCount);
       fa.setCipherTextCount(fc);
 
-      int keyCharIdx = fa.rotationAnalysis();
+      fas[i] = fa;
+    }
+
+    return fas;
+  }
+
+  public String obtainKey(FrequencyAnalysis[] fas)
+  {
+    String[] strings = splitStringIntoKeyedStrings(m_cipherText, fas.length, true);
+
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < fas.length; i++)
+    {
+      int keyCharIdx = fas[i].rotationAnalysis();
       char keyChar = Utils.getCharFromIndex(keyCharIdx);
       sb.append(keyChar);
     }
@@ -113,6 +110,5 @@ public class VigenereAnalysis
 
   private double m_tolerance;
   private FrequencyCounter m_plainCount;
-  private FrequencyCounter m_cipherCount;
   private String m_cipherText;
 }
