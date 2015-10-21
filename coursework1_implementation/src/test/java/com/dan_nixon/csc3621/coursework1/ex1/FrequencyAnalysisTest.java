@@ -81,6 +81,6 @@ public class FrequencyAnalysisTest
     fa.setPlainTextCount(plainCount);
     fa.setCipherTextCount(cipherCount);
 
-    fa.rotationAnalysis();
+    assertEquals(4, fa.rotationAnalysis());
   }
 }
