@@ -1,5 +1,9 @@
 #!/bin/bash
 
+JAVA_FLAGS="-cp target/*.jar"
+VCIPHER_CLASS=com.dan_nixon.csc3621.coursework1.ex2.VigenereApp
+ANALYSIS_CLASS=com.dan_nixon.csc3621.coursework1.ex1.Analysis
+
 PLAINTEXT=src/test/resources/Exercise1Plaintext.txt
 PLAINTEXT_SAMPLE=src/test/resources/pg1661.txt
 
@@ -8,25 +12,25 @@ VIGENERE_CIPHERTEXT=cipher.txt
 SHIFT_CIPHERTEXT=src/test/resources/Exercise1Ciphertext.txt
 
 # Run Vigenere cipher on plaintext
-java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex2.VigenereApp --encrypt --key $VIGENERE_KEY --file $PLAINTEXT > $VIGENERE_CIPHERTEXT
+java $JAVA_FLAGS $VCIPHER_CLASS --encrypt --key $VIGENERE_KEY --file $PLAINTEXT > $VIGENERE_CIPHERTEXT
 
 # Run frequency count on sample plain text
 echo "Plain text (sample):"
-java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex1.Analysis frequency $PLAINTEXT_SAMPLE
+java $JAVA_FLAGS $ANALYSIS_CLASS $PLAINTEXT_SAMPLE
 
 # Run frequency count on plain text (that was ciphered)
 echo
 echo "Plain text (ciphered):"
-java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex1.Analysis frequency $PLAINTEXT
+java $JAVA_FLAGS $ANALYSIS_CLASS $PLAINTEXT
 
 # Run frequency count on shift cipher
 echo
 echo "Shift cipher:"
-java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex1.Analysis frequency $SHIFT_CIPHERTEXT
+java $JAVA_FLAGS $ANALYSIS_CLASS $SHIFT_CIPHERTEXT
 
 # Run frequency count on Vigenere cipher
 echo
 echo "Vigenere cipher:"
-java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex1.Analysis frequency $VIGENERE_CIPHERTEXT
+java $JAVA_FLAGS $ANALYSIS_CLASS $VIGENERE_CIPHERTEXT
 
 rm $VIGENERE_CIPHERTEXT

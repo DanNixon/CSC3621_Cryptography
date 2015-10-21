@@ -51,7 +51,7 @@ public class VigenereAnalysisTest
 
     String cipherText = Utils.readFileToString(cipherFile);
 
-    VigenereAnalysis va = new VigenereAnalysis(0.0005);
+    VigenereAnalysis va = new VigenereAnalysis();
     va.setPlainTextCount(plainCount);
     va.setCipherText(cipherText);
 
@@ -60,7 +60,6 @@ public class VigenereAnalysisTest
 
     // Should be "ncl" but frequency analysis fails
     // assertEquals("ncl", key);
-
     assertEquals("pcl", key);
   }
 
@@ -75,7 +74,7 @@ public class VigenereAnalysisTest
 
     String cipherText = Utils.readFileToString(cipherFile);
 
-    VigenereAnalysis va = new VigenereAnalysis(0.0005);
+    VigenereAnalysis va = new VigenereAnalysis();
     va.setPlainTextCount(plainCount);
     va.setCipherText(cipherText);
 
@@ -84,7 +83,6 @@ public class VigenereAnalysisTest
 
     // Should be "plato" but frequency analysis fails
     // assertEquals("plato", key);
-
     assertEquals("pllto", key);
   }
 }

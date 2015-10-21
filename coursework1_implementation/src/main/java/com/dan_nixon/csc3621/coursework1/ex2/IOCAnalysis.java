@@ -133,7 +133,7 @@ public class IOCAnalysis
   }
 
   /**
-   * Attempts to find the correct key size by columising the cipher text by an
+   * Attempts to find the correct key size by tabulating the cipher text by an
    * assumed key size and calculating the index of coincidence for each column.
    *
    * @param lower Lower bound of the key size search space

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+JAVA_FLAGS="-cp target/*.jar"
+CLASS=com.dan_nixon.csc3621.coursework1.ex2.VigenereAnalysisApp
+
+PLAIN_FILE=src/test/resources/pg1661.txt
+CIPHER_FILE=src/test/resources/Exercise2Ciphertext.txt
+
+java $JAVA_FLAGS $CLASS --cipher-file $CIPHER_FILE --plain-file $PLAIN_FILE

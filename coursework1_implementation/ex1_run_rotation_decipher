@@ -1,6 +1,9 @@
 #!/bin/bash
 
+JAVA_FLAGS="-cp target/*.jar"
+CLASS=com.dan_nixon.csc3621.coursework1.ex1.DecipherRotation
+
 CIPHER_FILE=src/test/resources/Exercise1Ciphertext.txt
 ROT_CIPHER_KEY=4
 
-java -cp target/*.jar com.dan_nixon.csc3621.coursework1.ex1.DecipherRotation --shift $ROT_CIPHER_KEY --file $CIPHER_FILE
+java $JAVA_FLAGS $CLASS --shift $ROT_CIPHER_KEY --file $CIPHER_FILE

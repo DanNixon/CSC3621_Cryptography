@@ -16,6 +16,7 @@ script:
   # - ./ex2_run_cipher_decipher_cycle
   - ./ex2_compare_ciphertext_frequencies
   - ./ex2_decipher_set_ciphertext
+  - ./ex2_ciphertext_analysis
 
 notifications:
   email:

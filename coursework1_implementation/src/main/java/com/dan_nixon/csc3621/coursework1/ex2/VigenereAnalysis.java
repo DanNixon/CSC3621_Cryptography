@@ -46,9 +46,8 @@ public class VigenereAnalysis
     return strings;
   }
 
-  public VigenereAnalysis(double tolerance)
+  public VigenereAnalysis()
   {
-    m_tolerance = tolerance;
     m_plainCount = null;
     m_cipherText = "";
   }
@@ -56,7 +55,7 @@ public class VigenereAnalysis
   /**
    * Sets the count for plain text characters.
    *
-   * @param plainCount COunt of plain text characters
+   * @param plainCount Count of plain text characters
    */
   public void setPlainTextCount(FrequencyCounter plainCount)
   {
@@ -73,6 +72,12 @@ public class VigenereAnalysis
     m_cipherText = cipherText;
   }
 
+  /**
+   * Performs frequency analysis on tabulated cipher text substrings.
+   *
+   * @param keySize Number of columns
+   * @return FrequencyAnalysis instances for each column
+   */
   public FrequencyAnalysis[] frequencyAnalysis(int keySize)
   {
     String[] strings = splitStringIntoKeyedStrings(m_cipherText, keySize, true);
@@ -93,6 +98,13 @@ public class VigenereAnalysis
     return fas;
   }
 
+  /**
+   * Obtains the encryption key by performing frequency analysis for a shift
+   * cipher on each columns of the tabulated cipher text.
+   *
+   * @param fas Array of FrequencyAnalysis instances for each column
+   * @return Best key found
+   */
   public String obtainKey(FrequencyAnalysis[] fas)
   {
     String[] strings = splitStringIntoKeyedStrings(m_cipherText, fas.length, true);
@@ -108,7 +120,6 @@ public class VigenereAnalysis
     return sb.toString();
   }
 
-  private double m_tolerance;
   private FrequencyCounter m_plainCount;
   private String m_cipherText;
 }
