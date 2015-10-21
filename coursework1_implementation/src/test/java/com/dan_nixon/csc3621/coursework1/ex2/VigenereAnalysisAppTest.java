@@ -44,7 +44,6 @@ public class VigenereAnalysisAppTest
     String key = VigenereAnalysisApp.getKey(options, plainCount, cipherText, 5);
 
     // Should be "plato" but frequency analysis fails
-    // assertEquals("plato", key);
-    assertEquals("pllto", key);
+    assertEquals("plato", key);
   }
 }

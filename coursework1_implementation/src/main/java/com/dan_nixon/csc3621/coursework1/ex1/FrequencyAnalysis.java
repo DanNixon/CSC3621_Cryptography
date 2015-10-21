@@ -63,7 +63,7 @@ public class FrequencyAnalysis
     int bestFitRotation = 0;
     double bestFitDiff = Double.MAX_VALUE;
 
-    for (int i = 1; i < 26; i++)
+    for (int i = 0; i < 26; i++)
     {
       double[] rotatedPlainDistrib = Utils.rotateArray(m_plainDistrib, i);
 

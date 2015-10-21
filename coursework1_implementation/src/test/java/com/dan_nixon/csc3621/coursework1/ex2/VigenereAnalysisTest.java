@@ -82,7 +82,6 @@ public class VigenereAnalysisTest
     String key = va.obtainKey(fas);
 
     // Should be "plato" but frequency analysis fails
-    // assertEquals("plato", key);
-    assertEquals("pllto", key);
+    assertEquals("plato", key);
   }
 }
