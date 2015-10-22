@@ -1,0 +1,9 @@
+#!/bin/bash
+
+JAVA_FLAGS="-cp target/*.jar"
+CLASS=com.dan_nixon.csc3621.cw1.ex2.VigenereApp
+
+KEY=ncl
+PLAIN_FILE=src/test/resources/test_ex2_plain.txt
+
+java $JAVA_FLAGS $CLASS --encrypt --key $KEY --file $PLAIN_FILE

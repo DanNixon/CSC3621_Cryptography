@@ -14,6 +14,7 @@ script:
   - ./ex1_run_cipher_analysis
   - ./ex1_run_rotation_decipher
   # - ./ex2_run_cipher_decipher_cycle
+  - ./ex2_encrypt_newcastleuniversity
   - ./ex2_compare_ciphertext_frequencies
   - ./ex2_decipher_set_ciphertext
   - ./ex2_ciphertext_analysis
