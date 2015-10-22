@@ -86,6 +86,9 @@ perform frequency analysis on a sample of plain English text (in this case the
 cipher (the decrypted plain text from exercise 1 encrypted with the \Vigenere
 cipher using the hey \textit{ncl}).
 
+This analysis was performed using the frequency analysis tool developed as part
+of exercise 1.
+
 The results of this analysis are shown in table
 \ref{table:letter_frequency_comparison}.
 
@@ -128,7 +131,13 @@ The results of this analysis are shown in table
   \label{table:letter_frequency_comparison}
 \end{table}
 
+This shows that although the \Vigenere cipher does produce cipher text that has
+a more even probability distribution than a shift cipher, it still contains a
+pattern which can be exploited as demonstrated in section
+\ref{sec:cryptanalysis}.
+
 \section{Cryptanalysis of \Vigenere cipher text}
+\label{sec:cryptanalysis}
 
 Retrieving the original message from the cipher text is done in in stages;
 discovering the length of the key, for each character of the key obtaining its
@@ -136,11 +145,64 @@ value and decrypting the cipher text using the discovered key.
 
 \subsection{Obtaining the key length}
 
-TODO
+One method of obtaining the length of the key used to encrypt the cipher text
+is to examine the index of coincidence of the cipher text.
+
+The index of coincidence is calculated in the \texttt{IOCAnalysis} class using
+equation \ref{eq:ioc}, this can then be used to determine a likely key size used
+in the encryption and is implemented in the \texttt{obtainKeySize()} method, in
+this case the mapping of index of coincidence to key size is enumerated in the
+\texttt{keySizeFromIoC()} method.
+
+\begin{equation}
+  IC = \frac{\sum_{i = 0}^{25} c_{i} \left(c_{i} - 1\right)}{N \left(N - 1\right)}
+  \label{eq:ioc}
+\end{equation}
+\FloatBarrier
+
+where $c$ is the number of counts for a letter in the text and $N$ is the total
+number of letters in the text.
+
+When used on the provided cipher text (\texttt{Exercise2Ciphertext.txt}) this
+analysis method gave the most likely key to be 3, however when I attempted to
+obtain the key characters using this key length I was unable to successfully
+determine a shift offset for the three key positions.
+
+In order to validate that a key length was possible on a given cipher text I
+implemented a test in the \texttt{validateKeySize()} function which will split
+the cipher text into a given number of columns based on the key size to be
+tested and calculate the index of coincidence of each column, if the key is
+correct then the index of coincidence will be close to that of plain English
+text for every column.
+
+As expected the key size of 3 did not pass this validation test, I therefore
+wrote another function, \texttt{obtainKeySizeBruteForce()}, which would iterate
+over a given range of key sizes and return the first key size to pass the
+\texttt{validateKeySize()} test.
+
+This brute force method returned a key size of 5, which in the next section will
+prove to be the correct key length for this cipher text.
 
 \subsection{Obtaining the key characters}
 
 TODO
+
+\subsection{Output of the cryptanalysis program}
+\label{sec:cryptanalysis_output}
+
+Figure \ref{fig:cryptanalysis_output} shows the output from the cryptanalysis
+program when executed using the \texttt{ex2\_ciphertext\_analysis} Bash script.
+
+Note that the \texttt{--verbose} option is commented out here, if this option is
+provided then the probability distributions are output for each letter of the
+key to assist in manual analysis if required.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{graphics/ex2_cryptanalysis_output.eps}
+  \caption{Output of cryptanalysis program}
+  \label{fig:cryptanalysis_output}
+\end{figure}
 
 \subsection{Obtaining the original plain text}
 
