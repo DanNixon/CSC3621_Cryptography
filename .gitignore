@@ -18,3 +18,5 @@ buildNumber.properties
 *.pyg
 *.xml
 *.blg
+*.fls
+*_latexmk

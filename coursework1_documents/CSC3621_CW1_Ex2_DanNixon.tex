@@ -14,6 +14,10 @@
 \usepackage{scrextend}
 \usepackage{titlesec}
 \usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage[section]{placeins}
+\usepackage{minted}
+\usepackage{booktabs}
 
 % Handle graphics correctly
 \ifx\pdftexversion\undefined
@@ -39,9 +43,48 @@
 \setlength{\headheight}{15.2pt}
 \setlength{\headsep}{15.2pt}
 
+% For the sake of not having to repeat the accent escape
+\newcommand{\Vigenere}{Vigen\`{e}re }
+
 \begin{document}
 
-Put work here.
+\section{\Vigenere cipher program}
+\label{sec:vigenere_program}
+
+TODO
+
+\section{Comparison of letter frequencies}
+
+TODO
+
+\section{Cryptanalysis of \Vigenere cipher text}
+
+Retrieving the original message from the cipher text is done in in stages;
+discovering the length of the key, for each character of the key obtaining its
+value and decrypting the cipher text using the discovered key.
+
+\subsection{Obtaining the key length}
+
+TODO
+
+\subsection{Obtaining the key characters}
+
+TODO
+
+\subsection{Obtaining the original plain text}
+
+This was done using the program described in section \ref{sec:vigenere_program}
+using the \texttt{ex2\_decipher\_set\_ciphertext} Bash script. This gives the
+output seen in listing \ref{listing:plaintext_output}.
+
+\begin{listing}
+  \inputminted[frame=lines,fontsize=\scriptsize]{text}{listings/ex2_plaintext.txt}
+  \caption{Deciphered plain text}
+  \label{listing:plaintext_output}
+\end{listing}
+
+This clearly shows a comprehensible English sentence; \textit{Neither must we
+forget thet there public is but the third part of a still larger design \ldots}.
 
 \input{sections/appendix_running_bundled_code.tex}
 
