@@ -51,11 +51,82 @@
 \section{\Vigenere cipher program}
 \label{sec:vigenere_program}
 
-TODO
+The \Vigenere encryption and decryption program is implemented in the
+\texttt{Vigenere} Java class and executed using the command line interface
+implemented in the \texttt{VigenereApp.java} file.
+
+The \texttt{ex2\_run\_cipher\_decipher\_cycle} Bash script demonstrates using
+the program to encrypt the \texttt{pg1661.txt} file using the key \textit{ncl}
+and then decrypt the text just encrypted.
+
+The \texttt{ex2\_encrypt\_newcastleuniversity} shows the results of encrypting
+the text \textit{newcastleuniversity} with key \textit{ncl}, the results of this
+are shown in figure \ref{fig:encrypt_newcastleuniversity_result}. This gave the
+cipher text \textit{aghpcdgnphptigcfkel}.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{graphics/ex2_encrypt_newcastleuniversity_result.eps}
+  \caption{Encryption of the message \textit{newcastleuniversity}}
+  \label{fig:encrypt_newcastleuniversity_result}
+\end{figure}
+
+The logic of the program is to iterate through all characters in the plain text
+and assuming the character is an English alphabetical character the character is
+shifted according to the current position in the key, the key position is
+advanced with every character that is rotated until the end of the key is
+reached at which point the key position is reset to the start of the key.
 
 \section{Comparison of letter frequencies}
 
-TODO
+The \texttt{ex2\_compare\_ciphertext\_frequencies} Bash script is used to
+perform frequency analysis on a sample of plain English text (in this case the
+\texttt{pg1661.txt} file), text encrypted with a simple shift cipher (the
+\texttt{Exercise1Ciphertext.txt} file) and a text encrypted with the \Vigenere
+cipher (the decrypted plain text from exercise 1 encrypted with the \Vigenere
+cipher using the hey \textit{ncl}).
+
+The results of this analysis are shown in table
+\ref{table:letter_frequency_comparison}.
+
+\begin{table}[h]
+  \centering
+    \scriptsize
+  \begin{tabular}{@{}lrrr@{}}
+    \toprule
+    Letter & Plain English Text & Shift Cipher & \Vigenere cipher \\
+    \midrule
+    a      & 8.082\%            & 2.657\%      & 3.986\%          \\
+    b      & 1.484\%            & 0.265\%      & 2.392\%          \\
+    c      & 2.483\%            & 1.661\%      & 4.717\%          \\
+    d      & 4.271\%            & 0.0\%        & 3.056\%          \\
+    e      & 12.287\%           & 7.774\%      & 5.780\%          \\
+    f      & 2.093\%            & 1.395\%      & 4.916\%          \\
+    g      & 1.855\%            & 2.923\%      & 6.843\%          \\
+    h      & 6.615\%            & 3.654\%      & 2.657\%          \\
+    i      & 6.988\%            & 13.621\%     & 1.262\%          \\
+    j      & 0.121\%            & 1.594\%      & 3.122\%          \\
+    k      & 0.823\%            & 2.126\%      & 1.461\%          \\
+    l      & 3.944\%            & 5.714\%      & 3.787\%          \\
+    m      & 2.718\%            & 7.242\%      & 0.598\%          \\
+    n      & 6.649\%            & 0.199\%      & 5.182\%          \\
+    o      & 7.798\%            & 0.598\%      & 3.122\%          \\
+    p      & 1.629\%            & 3.720\%      & 7.308\%          \\
+    q      & 0.097\%            & 2.857\%      & 3.787\%          \\
+    r      & 5.743\%            & 6.843\%      & 6.843\%          \\
+    s      & 6.254\%            & 6.578\%      & 2.192\%          \\
+    t      & 9.059\%            & 2.392\%      & 5.847\%          \\
+    u      & 3.049\%            & 0.265\%      & 4.518\%          \\
+    v      & 1.022\%            & 6.710\%      & 6.112\%          \\
+    w      & 2.574\%            & 7.508\%      & 2.325\%          \\
+    x      & 0.129\%            & 7.973\%      & 1.196\%          \\
+    y      & 2.182\%            & 2.923\%      & 3.853\%          \\
+    z      & 0.034\%            & 0.797\%      & 3.122\%          \\
+    \bottomrule
+  \end{tabular}
+  \caption{Letter frequencies in shift and \Vigenere ciphers}
+  \label{table:letter_frequency_comparison}
+\end{table}
 
 \section{Cryptanalysis of \Vigenere cipher text}
 
@@ -75,17 +146,18 @@ TODO
 
 This was done using the program described in section \ref{sec:vigenere_program}
 using the \texttt{ex2\_decipher\_set\_ciphertext} Bash script. This gives the
-output seen in listing \ref{listing:plaintext_output}.
+output seen in figure \ref{fig:plaintext_output} (note that the output shown
+is truncated in order to save space, however the recurrence of the key several
+times).
 
-\begin{listing}
-  \inputminted[frame=lines,fontsize=\scriptsize]{text}{listings/ex2_plaintext.txt}
-  \caption{Deciphered plain text}
-  \label{listing:plaintext_output}
-\end{listing}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{graphics/ex2_plaintext_output.eps}
+  \caption{Decryption of cipher text}
+  \label{fig:plaintext_output}
+\end{figure}
 
 This clearly shows a comprehensible English sentence; \textit{Neither must we
 forget thet there public is but the third part of a still larger design \ldots}.
-
-\input{sections/appendix_running_bundled_code.tex}
 
 \end{document}

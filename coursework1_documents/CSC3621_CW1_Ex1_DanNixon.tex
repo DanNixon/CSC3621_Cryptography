@@ -151,15 +151,17 @@ $C$ is the probability distribution of characters in the cipher text after
 having been rotated by offset $n$.
 
 The output of this additional processing is output after the original frequency
-analysis, as shown in listing \ref{listing:shift_cipher_analysis_results}. This
+analysis, as shown in figure \ref{fig:shift_cipher_analysis_results}. This
 confirmed my theory for the cipher being a simple shift cipher with an offset of
 4.
 
-\begin{listing}
-  \inputminted[frame=lines,fontsize=\scriptsize]{text}{listings/ex1_cryptanalysis_2.txt}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.65\textwidth]{graphics/ex1_cipher_analysis.eps}
   \caption{Result of automatic shift cipher detection}
+  \label{fig:plaintext_output}
   \label{listing:shift_cipher_analysis_results}
-\end{listing}
+\end{figure}
 
 \section{Retrieval of the plain text}
 
@@ -176,8 +178,6 @@ output given in listing \ref{listing:plain_text}.
   \caption{Retrieved plain text}
   \label{listing:plain_text}
 \end{listing}
-
-\input{sections/appendix_running_bundled_code.tex}
 
 \printbibliography
 
