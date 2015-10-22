@@ -14,8 +14,8 @@ public class Utils
    * the dash and double dash options.
    *
    * e.g. -key 65 first_positional --encrypt --string hello positional
-   * parses to {key:65, p0:first_positional, encrypt:"", string:hello,
-   *            p1:positional}
+   * parses to {key:65, _p0:first_positional, encrypt:"", string:hello,
+   *            _p1:positional}
    *
    * @param args Array of strings
    * @return Map of key:value pairs
@@ -38,7 +38,7 @@ public class Utils
 
         // Get the value
         String value = null;
-        if (!args[i + 1].startsWith("-"))
+        if (i + 1 < args.length && !args[i + 1].startsWith("-"))
         {
           value = new String(args[i + 1]);
           i++;
@@ -48,7 +48,7 @@ public class Utils
       }
       else
       {
-        String key = "p" + numPositional;
+        String key = "_p" + numPositional;
         numPositional++;
         parsed.put(key, str);
       }

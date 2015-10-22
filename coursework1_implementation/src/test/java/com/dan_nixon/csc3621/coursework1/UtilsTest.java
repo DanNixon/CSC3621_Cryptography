@@ -28,10 +28,10 @@ public class UtilsTest
     assertEquals("2", parsed.get("_num_positional"));
 
     assertEquals("65", parsed.get("key"));
-    assertEquals("first_positional", parsed.get("p0"));
+    assertEquals("first_positional", parsed.get("_p0"));
     assertTrue(parsed.containsKey("encrypt"));
     assertEquals("hello", parsed.get("string"));
-    assertEquals("positional", parsed.get("p1"));
+    assertEquals("positional", parsed.get("_p1"));
   }
 
   @Test

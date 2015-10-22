@@ -15,7 +15,7 @@ public class Analysis
     int numPlainFiles = Integer.parseInt(options.get("_num_positional"));
     File[] plainFiles = new File[numPlainFiles];
     for (int i = 0; i < numPlainFiles; i++)
-      plainFiles[i] = new File(options.get("p"+i));
+      plainFiles[i] = new File(options.get("_p"+i));
 
     // Do frequency analysis on two files and perform analysis on the results
     if (options.containsKey("cipher-file"))

@@ -107,10 +107,13 @@ public class VigenereAnalysisApp
     FrequencyAnalysis[] fas = va.frequencyAnalysis(keyLength);
 
     // Output probability distributions
-    for (int i = 0; i < fas.length; i++)
+    if (options.containsKey("verbose"))
     {
-      System.out.println("Key character " + i + ":");
-      System.out.println(fas[i].toString());
+      for (int i = 0; i < fas.length; i++)
+      {
+        System.out.println("Key character " + i + ":");
+        System.out.println(fas[i].toString());
+      }
     }
 
     // Obtain key
