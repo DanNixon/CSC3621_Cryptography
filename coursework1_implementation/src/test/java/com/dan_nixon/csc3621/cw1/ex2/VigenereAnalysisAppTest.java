@@ -1,4 +1,4 @@
-package com.dan_nixon.csc3621.coursework1.ex2;
+package com.dan_nixon.csc3621.cw1.ex2;
 
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import com.dan_nixon.csc3621.coursework1.Utils;
-import com.dan_nixon.csc3621.coursework1.ex1.FrequencyCounter;
-import com.dan_nixon.csc3621.coursework1.ex2.VigenereAnalysisApp;
+import com.dan_nixon.csc3621.cw1.Utils;
+import com.dan_nixon.csc3621.cw1.ex1.FrequencyCounter;
+import com.dan_nixon.csc3621.cw1.ex2.VigenereAnalysisApp;
 
 public class VigenereAnalysisAppTest
 {

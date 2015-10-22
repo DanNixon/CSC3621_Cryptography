@@ -1,4 +1,4 @@
-package com.dan_nixon.csc3621.coursework1;
+package com.dan_nixon.csc3621.cw1;
 
 public class App
 {

@@ -1,4 +1,4 @@
-package com.dan_nixon.csc3621.coursework1.ex2;
+package com.dan_nixon.csc3621.cw1.ex2;
 
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -6,9 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
-import com.dan_nixon.csc3621.coursework1.Utils;
-import com.dan_nixon.csc3621.coursework1.ex1.FrequencyCounter;
-import com.dan_nixon.csc3621.coursework1.ex2.IOCAnalysis;
+import com.dan_nixon.csc3621.cw1.Utils;
+import com.dan_nixon.csc3621.cw1.ex1.FrequencyCounter;
+import com.dan_nixon.csc3621.cw1.ex2.IOCAnalysis;
 
 public class IOCAnalysisTest
 {

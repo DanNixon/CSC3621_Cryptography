@@ -1,11 +1,11 @@
-package com.dan_nixon.csc3621.coursework1.ex2;
+package com.dan_nixon.csc3621.cw1.ex2;
 
 import java.util.Arrays;
 import java.io.File;
 import java.io.IOException;
-import com.dan_nixon.csc3621.coursework1.Utils;
-import com.dan_nixon.csc3621.coursework1.ex1.FrequencyAnalysis;
-import com.dan_nixon.csc3621.coursework1.ex1.FrequencyCounter;
+import com.dan_nixon.csc3621.cw1.Utils;
+import com.dan_nixon.csc3621.cw1.ex1.FrequencyAnalysis;
+import com.dan_nixon.csc3621.cw1.ex1.FrequencyCounter;
 
 public class VigenereAnalysis
 {

@@ -1,10 +1,10 @@
-package com.dan_nixon.csc3621.coursework1.ex1;
+package com.dan_nixon.csc3621.cw1.ex1;
 
 import java.util.Map;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import com.dan_nixon.csc3621.coursework1.Utils;
+import com.dan_nixon.csc3621.cw1.Utils;
 
 public class DecipherRotation
 {

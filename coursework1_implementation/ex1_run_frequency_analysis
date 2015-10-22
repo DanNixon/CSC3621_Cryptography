@@ -1,7 +1,7 @@
 #!/bin/bash
 
 JAVA_FLAGS="-cp target/*.jar"
-CLASS=com.dan_nixon.csc3621.coursework1.ex1.Analysis
+CLASS=com.dan_nixon.csc3621.cw1.ex1.Analysis
 
 PLAIN_FILE=src/test/resources/pg1661.txt
 
