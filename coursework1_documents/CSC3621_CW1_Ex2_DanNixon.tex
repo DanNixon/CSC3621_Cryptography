@@ -94,7 +94,6 @@ The results of this analysis are shown in table
 
 \begin{table}[h]
   \centering
-    \scriptsize
   \begin{tabular}{@{}lrrr@{}}
     \toprule
     Letter & Plain English Text & Shift Cipher & \Vigenere cipher \\
@@ -185,7 +184,19 @@ prove to be the correct key length for this cipher text.
 
 \subsection{Obtaining the key characters}
 
-TODO
+Given the key length, the key characters can be obtained by tabulating the
+cipher text into $n$ columns, where $n$ is the size of the key. Then the
+frequency analysis described in exercise 1 can be applied to each column
+individually to obtain the offset of the shift cipher that encrypted every
+character in that column.
+
+In the cryptanalysis program this is implemented in the
+\texttt{VigenereAnalysis} Java class, specifically in the
+\texttt{frequencyAnalysis()} and \texttt{obtainKey()} methods.
+
+In the case of the provided cipher text this analysis successfully obtains all
+five characters of the key (shown in sections \ref{sec:cryptanalysis_output} and
+\ref{sec:plaintext}): \textit{plato}.
 
 \subsection{Output of the cryptanalysis program}
 \label{sec:cryptanalysis_output}
@@ -204,7 +215,12 @@ key to assist in manual analysis if required.
   \label{fig:cryptanalysis_output}
 \end{figure}
 
+This shows that the program first tries to obtain the key size through the index
+of coincidence of the entire cipher text but fails the verification step, then
+successfully obtains it through the brute force method.
+
 \subsection{Obtaining the original plain text}
+\label{sec:plaintext}
 
 This was done using the program described in section \ref{sec:vigenere_program}
 using the \texttt{ex2\_decipher\_set\_ciphertext} Bash script. This gives the
