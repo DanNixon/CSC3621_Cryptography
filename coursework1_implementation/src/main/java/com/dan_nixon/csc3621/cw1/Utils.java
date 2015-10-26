@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.StringBuilder;
 
@@ -141,5 +142,36 @@ public class Utils
       sb.append(c);
     }
     return sb.toString();
+  }
+
+  /**
+   * Writes binary data to a file.
+   *
+   * @param file File to write to
+   * @param data Data to write
+   */
+  public static void writeBinaryFile(File file, byte[] data) throws IOException
+  {
+    FileOutputStream out = new FileOutputStream(file);
+    out.write(data);
+    out.close();
+  }
+
+  /**
+   * Reads binary data from a file.
+   *
+   * @param file File to read from
+   * @return Data read from file
+   */
+  public static byte[] readBinaryFile(File file) throws IOException
+  {
+    FileInputStream in = new FileInputStream(file);
+    int len = (int) file.length();
+
+    // Read to buffer
+    byte[] buffer = new byte[len];
+    int read = in.read(buffer);
+
+    return buffer;
   }
 }

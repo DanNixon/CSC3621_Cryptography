@@ -105,9 +105,35 @@ public class UtilsTest
 
   @Test public void testReadFileToString() throws IOException
   {
-    URL url = this.getClass().getResource("/test_ex1_text1.txt");
-    File file = new File(url.getFile());
+    File file = new File(this.getClass().getResource("/test_ex1_text1.txt").getFile());
     String str = Utils.readFileToString(file);
     assertEquals("abcdefghijklmnopqrstuvwxyz\n", str);
+  }
+
+  @Test
+  public void testReadBinaryFile() throws IOException
+  {
+    byte[] data = {(byte) 0x0F, (byte) 0x1E, (byte) 0x2D,
+                   (byte) 0x3C, (byte) 0x11, (byte) 0x33,
+                   (byte) 0x11, (byte) 0x2d, (byte) 0x22,
+                   (byte) 0x22};
+
+    File file = new File(this.getClass().getResource("/test_binary_read.bin").getFile());
+    byte[] readData = Utils.readBinaryFile(file);
+
+    assertArrayEquals(data, readData);
+  }
+
+  @Test
+  public void testWriteBinaryFile() throws IOException
+  {
+    File file = new File(this.getClass().getResource("/test_binary_write.bin").getFile());
+    byte[] data = {(byte) 0xDE, (byte) 0xAD, (byte) 0xBE,
+                   (byte) 0xEF, (byte) 0xFE, (byte) 0xED};
+
+    Utils.writeBinaryFile(file, data);
+    byte[] readData = Utils.readBinaryFile(file);
+
+    assertArrayEquals(data, readData);
   }
 }
