@@ -11,6 +11,11 @@ import com.dan_nixon.csc3621.cw1.ex2.VigenereAnalysis;
 
 public class VigenereAnalysisApp
 {
+  /**
+   * Main application entry point.
+   *
+   * @param args Program arguments
+   */
   public static void main(String[] args) throws IOException
   {
     Map<String, String> options = Utils.parseCommandLine(args);
