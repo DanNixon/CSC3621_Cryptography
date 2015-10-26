@@ -2,6 +2,8 @@ package com.dan_nixon.csc3621.cw1.ex3;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.io.IOException;
+import com.dan_nixon.csc3621.cw1.Utils;
 
 public class OneTimePadEncryption
 {
@@ -20,9 +22,9 @@ public class OneTimePadEncryption
    *
    * @param padFile File to load pad from
    */
-  public OneTimePadEncryption(File padFile)
+  public OneTimePadEncryption(File padFile) throws IOException
   {
-    //TODO: read in pad
+    m_pad = Utils.readBinaryFile(padFile);
   }
 
   /**

@@ -2,7 +2,9 @@ package com.dan_nixon.csc3621.cw1;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.io.IOException;
 import com.dan_nixon.csc3621.cw1.ex3.OneTimePadEncryption;
 
 public class OneTimePadEncryptionTest
@@ -63,14 +65,44 @@ public class OneTimePadEncryptionTest
   }
 
   @Test
-  public void testLoadPadFromFileEncrypt()
+  public void testLoadPadFromFileEncrypt() throws IOException
   {
-    //TODO
+    File padFile = new File(this.getClass().getResource("/test_ex3_cw_pad.bin").getFile());
+
+    String message = "Every cloud has a silver lining";
+
+    byte[] cipherData = {(byte)0x28, (byte)0xb1, (byte)0x4a, (byte)0xb7,
+                         (byte)0xec, (byte)0xc3, (byte)0x3e, (byte)0xa1,
+                         (byte)0x57, (byte)0xb5, (byte)0x39, (byte)0xea,
+                         (byte)0x42, (byte)0x6c, (byte)0x5e, (byte)0x9d,
+                         (byte)0xef, (byte)0x0d, (byte)0x81, (byte)0x62,
+                         (byte)0x7e, (byte)0xed, (byte)0x49, (byte)0x88,
+                         (byte)0x09, (byte)0xc1, (byte)0x7e, (byte)0xf9,
+                         (byte)0x40, (byte)0x4c, (byte)0xc5};
+
+    OneTimePadEncryption otpe = new OneTimePadEncryption(padFile);
+
+    assertArrayEquals(cipherData, otpe.encrypt(message));
   }
 
   @Test
-  public void testLoadPadFromFileDecrypt()
+  public void testLoadPadFromFileDecrypt() throws IOException
   {
-    //TODO
+    File padFile = new File(this.getClass().getResource("/test_ex3_cw_pad.bin").getFile());
+
+    String message = "Every cloud has a silver lining";
+
+    byte[] cipherData = {(byte)0x28, (byte)0xb1, (byte)0x4a, (byte)0xb7,
+                         (byte)0xec, (byte)0xc3, (byte)0x3e, (byte)0xa1,
+                         (byte)0x57, (byte)0xb5, (byte)0x39, (byte)0xea,
+                         (byte)0x42, (byte)0x6c, (byte)0x5e, (byte)0x9d,
+                         (byte)0xef, (byte)0x0d, (byte)0x81, (byte)0x62,
+                         (byte)0x7e, (byte)0xed, (byte)0x49, (byte)0x88,
+                         (byte)0x09, (byte)0xc1, (byte)0x7e, (byte)0xf9,
+                         (byte)0x40, (byte)0x4c, (byte)0xc5};
+
+    OneTimePadEncryption otpe = new OneTimePadEncryption(padFile);
+
+    assertEquals(message, otpe.decrypt(cipherData));
   }
 }

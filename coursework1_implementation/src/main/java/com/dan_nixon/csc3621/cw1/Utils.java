@@ -165,6 +165,12 @@ public class Utils
    */
   public static byte[] readBinaryFile(File file) throws IOException
   {
+    if (!file.exists() && !file.isDirectory())
+    {
+      file.getParentFile().mkdirs();
+      file.createNewFile();
+    }
+
     FileInputStream in = new FileInputStream(file);
     int len = (int) file.length();
 
