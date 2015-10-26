@@ -47,7 +47,7 @@ public class OneTimePadEncryption
   {
     // Convert plain text string to bytes
     byte[] plainTextData = plainText.getBytes("US-ASCII");
-    if (plainTextData.length < m_pad.length)
+    if (plainTextData.length > m_pad.length)
       throw new RuntimeException("Pad too short");
 
     byte[] cipherData = new byte[plainTextData.length];

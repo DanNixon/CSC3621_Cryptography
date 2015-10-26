@@ -1,0 +1,15 @@
+#!/bin/bash
+
+JAVA_FLAGS="-cp target/*.jar"
+CLASS=com.dan_nixon.csc3621.cw1.ex3.OneTimePadApp
+
+PAD_FILE=temp_pad.bin
+PAD_LENGTH=1000000
+PAD_SEED=374892378
+
+# Generate pad
+java $JAVA_FLAGS $CLASS --generate-pad-file $PAD_FILE --length $PAD_LENGTH --seed $PAD_SEED
+
+ls -l $PAD_FILE
+
+rm $PAD_FILE

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+JAVA_FLAGS="-cp target/*.jar"
+CLASS=com.dan_nixon.csc3621.cw1.ex3.OneTimePadApp
+
+PLAIN_FILE=src/test/resources/Exercise1Plaintext.txt
+CIPHER_FILE=temp_cipher.bin
+PAD_FILE=temp_pad.bin
+PAD_LENGTH=1000000
+
+# Generate pad
+java $JAVA_FLAGS $CLASS --generate-pad-file $PAD_FILE --length $PAD_LENGTH
+
+# Encrypt
+java $JAVA_FLAGS $CLASS --encrypt --pad-file $PAD_FILE --cipher-file $CIPHER_FILE --message-file $PLAIN_FILE
+
+# Decrypt
+java $JAVA_FLAGS $CLASS --decrypt --pad-file $PAD_FILE --cipher-file $CIPHER_FILE
+
+ls -l $PAD_FILE
+ls -l $CIPHER_FILE
+
+rm $PAD_FILE
+rm $CIPHER_FILE
