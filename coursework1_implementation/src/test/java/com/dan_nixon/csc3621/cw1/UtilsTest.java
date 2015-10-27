@@ -136,4 +136,24 @@ public class UtilsTest
 
     assertArrayEquals(data, readData);
   }
+
+  @Test
+  public void testArrayXor()
+  {
+    byte[] a = {(byte) 0x34, (byte) 0x56, (byte) 0x64};
+    byte[] b = {(byte) 0xcc, (byte) 0x23};
+    byte[] xor = Utils.arrayXor(a, b);
+
+    byte[] expected = {(byte) 0xf8, (byte) 0x75, (byte) 0x00};
+    assertArrayEquals(expected, xor);
+  }
+
+  @Test
+  public void testByteArrayToString()
+  {
+    byte[] a = {(byte) 0x68, (byte) 0x65, (byte) 0x6C, (byte) 0x6C,
+                (byte) 0x6F, (byte) 0x99};
+    String str = Utils.byteArrayToString(a);
+    assertEquals("hello-", str);
+  }
 }

@@ -180,4 +180,46 @@ public class Utils
 
     return buffer;
   }
+
+  /**
+   * Computes the XOR of two byte arrays.
+   *
+   * @param a First array
+   * @param b Second array
+   * @return XOR array
+   */
+  public static byte[] arrayXor(byte[] a, byte[]b)
+  {
+    int minLength = Math.min(a.length, b.length);
+    int maxLength = Math.max(a.length, b.length);
+    byte[] xor = new byte[maxLength];
+    int i;
+    for (i = 0; i < minLength; i++)
+      xor[i] = (byte) (a[i] ^ b[i]);
+    for (; i < maxLength; i++)
+      xor[i] = 0;
+    return xor;
+  }
+
+  /**
+   * Converts a byte array to a String.
+   *
+   * @param arr Byte array to convert
+   * @return Byte array as string
+   */
+  public static String byteArrayToString(byte[] arr)
+  {
+    StringBuilder sb = new StringBuilder();
+
+    for (int i = 0; i < arr.length; i++)
+    {
+      byte b = arr[i];
+      if ((b >= 'A' && b <= 'Z') || (b >= 'a' && b < 'z'))
+        sb.append((char)(b & 0xff));
+      else
+        sb.append("-");
+    }
+
+    return sb.toString();
+  }
 }

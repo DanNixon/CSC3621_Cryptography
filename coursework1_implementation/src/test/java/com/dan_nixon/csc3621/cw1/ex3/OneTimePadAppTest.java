@@ -1,4 +1,4 @@
-package com.dan_nixon.csc3621.cw1;
+package com.dan_nixon.csc3621.cw1.ex3;
 
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.io.File;
 import java.io.IOException;
+import com.dan_nixon.csc3621.cw1.Utils;
 import com.dan_nixon.csc3621.cw1.ex3.OneTimePadApp;
 
 public class OneTimePadAppTest
