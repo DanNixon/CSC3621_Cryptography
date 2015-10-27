@@ -152,6 +152,12 @@ public class Utils
    */
   public static void writeBinaryFile(File file, byte[] data) throws IOException
   {
+    if (!file.exists() && !file.isDirectory())
+    {
+      file.getParentFile().mkdirs();
+      file.createNewFile();
+    }
+
     FileOutputStream out = new FileOutputStream(file);
     out.write(data);
     out.close();
@@ -165,12 +171,6 @@ public class Utils
    */
   public static byte[] readBinaryFile(File file) throws IOException
   {
-    if (!file.exists() && !file.isDirectory())
-    {
-      file.getParentFile().mkdirs();
-      file.createNewFile();
-    }
-
     FileInputStream in = new FileInputStream(file);
     int len = (int) file.length();
 

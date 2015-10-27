@@ -1,0 +1,23 @@
+#!/bin/bash
+
+JAVA_FLAGS="-cp target/*.jar"
+CLASS=com.dan_nixon.csc3621.cw1.ex3.OTPAttackApp
+
+ANALYSIS_FLAGS="--analysis
+ src/test/resources/ex3_cw_cipher_1.bin
+ src/test/resources/ex3_cw_cipher_2.bin
+ src/test/resources/ex3_cw_cipher_3.bin
+ src/test/resources/ex3_cw_cipher_4.bin
+ src/test/resources/ex3_cw_cipher_5.bin
+ src/test/resources/ex3_cw_cipher_6.bin
+ src/test/resources/ex3_cw_cipher_7.bin
+"
+
+java $JAVA_FLAGS $CLASS $ANALYSIS_FLAGS --target-cipher src/test/resources/ex3_cw_cipher_1.bin
+java $JAVA_FLAGS $CLASS $ANALYSIS_FLAGS --target-cipher src/test/resources/ex3_cw_cipher_2.bin
+java $JAVA_FLAGS $CLASS $ANALYSIS_FLAGS --target-cipher src/test/resources/ex3_cw_cipher_3.bin
+java $JAVA_FLAGS $CLASS $ANALYSIS_FLAGS --target-cipher src/test/resources/ex3_cw_cipher_4.bin
+java $JAVA_FLAGS $CLASS $ANALYSIS_FLAGS --target-cipher src/test/resources/ex3_cw_cipher_5.bin
+java $JAVA_FLAGS $CLASS $ANALYSIS_FLAGS --target-cipher src/test/resources/ex3_cw_cipher_6.bin
+java $JAVA_FLAGS $CLASS $ANALYSIS_FLAGS --target-cipher src/test/resources/ex3_cw_cipher_7.bin
+java $JAVA_FLAGS $CLASS $ANALYSIS_FLAGS --target-cipher src/test/resources/ex3_cw_cipher_target.bin
