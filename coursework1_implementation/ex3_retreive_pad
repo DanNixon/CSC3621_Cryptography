@@ -33,6 +33,3 @@ java $JAVA_FLAGS $ENC_CLASS --decrypt --pad-file $PAD_FILE --cipher-file src/tes
 java $JAVA_FLAGS $ENC_CLASS --decrypt --pad-file $PAD_FILE --cipher-file src/test/resources/ex3_cw_cipher_5.bin
 java $JAVA_FLAGS $ENC_CLASS --decrypt --pad-file $PAD_FILE --cipher-file src/test/resources/ex3_cw_cipher_6.bin
 java $JAVA_FLAGS $ENC_CLASS --decrypt --pad-file $PAD_FILE --cipher-file src/test/resources/ex3_cw_cipher_7.bin
-
-rm $PAD_FILE
-rm $TEST_CIPHER_FILE

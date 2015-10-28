@@ -11,5 +11,3 @@ PAD_SEED=374892378
 java $JAVA_FLAGS $CLASS --generate-pad-file $PAD_FILE --length $PAD_LENGTH --seed $PAD_SEED
 
 ls -l $PAD_FILE
-
-rm $PAD_FILE

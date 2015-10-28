@@ -19,6 +19,3 @@ java $JAVA_FLAGS $CLASS --decrypt --pad-file $PAD_FILE --cipher-file $CIPHER_FIL
 
 ls -l $PAD_FILE
 ls -l $CIPHER_FILE
-
-rm $PAD_FILE
-rm $CIPHER_FILE
