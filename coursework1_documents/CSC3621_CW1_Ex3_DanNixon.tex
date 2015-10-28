@@ -88,7 +88,7 @@ pad file.
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.6\textwidth]{graphics/ex3_pad_generation.eps}
+  \includegraphics[width=0.55\textwidth]{graphics/ex3_pad_generation.eps}
   \caption{Generation of a one time pad}
   \label{fig:generate_pad}
 \end{figure}
@@ -128,27 +128,75 @@ In addition to this I also performed a encryption and decryption cycle on the
 plain text from exercise 1 to ensure that a sample of plain text survives the
 encryption/decryption cycle intact.
 
-The result of this are shown in figure \ref{fig:enc_dec_cycle}.
+This can be executed using the \texttt{ex3\_encrypt\_decrypt\_cycle} Bash
+script. The result of this are shown in figure \ref{fig:enc_dec_cycle}.
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.6\textwidth]{graphics/ex3_enc_dec_cycle.eps}
+  \includegraphics[width=0.55\textwidth]{graphics/ex3_enc_dec_cycle.eps}
   \caption{Encryption and decryption cycle}
   \label{fig:enc_dec_cycle}
 \end{figure}
 
 \section{Cryptanalysis of cipher data}
 
-TODO
+The key to the successful cryptanalysis of the two time pad attack is that when
+a space (\texttt{0x20}) is XORed with a uppercase or lowercase alphabetic
+character then the case of that character is negated.
+
+For instance $0x64 \  \mathrm{(d)} \oplus 0x20 = 0x44 \  \mathrm{(D)}$.
+
+This means that when the XOR of two cipher texts is taken any bytes that can be
+converted to ASCII alphabetical characters the string produced (in the
+implementation and this document known as the "analysis string") indicate that
+the character in the same position in one of the messages was a space whilst the
+other was the same letter in the opposite case.
+
+For instance, one can determine given the XOR string
+\texttt{--UN-} that the third character of one message was a space whilst the
+third character of the other message was lowercase \textit{u}.
+
+When multiple cipher texts are available this technique can be used to analyse
+multiple XOR strings at once, where the target cipher text is XORed with
+multiple other cipher texts.
+
+When these strings are analysed per column you can then determine what character
+belongs in the same position of the target cipher text. Considering all bytes in
+a column that have ASCII alphabetical representations, if all are the same
+character then that is the character in the same column of the target message,
+otherwise if there are a mixture of characters then this indicates a space in
+the target message.
+
+For instance, figure \ref{fig:cryptanalysis_eg} shows the analysis strings for
+the target cipher text in this exercise, from this you can determine that the
+third character in the message must be \textit{u}, given that it is the unique
+character in the third column. Likewise the fourth character of the message must
+be a space as the fourth column contains multiple different characters.
+
+\begin{listing}
+  \inputminted[frame=lines,fontsize=\scriptsize,firstline=52,lastline=57]{text}{listings/ex3_cryptanalysis_1.txt}
+  \caption{Cryptanalysis example}
+  \label{listing:cryptanalysis_eg}
+\end{listing}
+\FloatBarrier
+
+With this knowledge it is simple to write a program that will perform this
+analysis automatically and generate a string that best matches the plain text
+message for a given cipher text. This was implemented in the \texttt{OTPAttack}
+Java class (part of which is based on the \texttt{OTPAttack.java} program
+supplied with the specification).
+
+Figure \ref{fig:cryptanalysis} shows the output of this program when executed
+using the \texttt{ex3\_cryptanalysis} Bash script, listing
+\ref{listing:cryptanalysis_verbose} shows the full verbose output including the
+analysis strings for each of the cipher texts included in the specification.
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.6\textwidth]{graphics/ex3_cryptanalysis_1.eps}
+  \includegraphics[width=0.55\textwidth]{graphics/ex3_cryptanalysis_1.eps}
   \caption{Execution of cryptanalysis program}
   \label{fig:cryptanalysis}
 \end{figure}
-
-TODO
 
 \begin{listing}
   \inputminted[frame=lines,fontsize=\scriptsize]{text}{listings/ex3_cryptanalysis_1.txt}
@@ -156,7 +204,12 @@ TODO
   \label{listing:cryptanalysis_verbose}
 \end{listing}
 
-TODO
+This program obtains reasonable guesses for the plain text messages for each of
+the cipher texts, at this point the full contents of all messages is easy to
+obtain by intuition; the seven sample cipher texts all seem to be famous quotes
+and the target cipher text contains enough known characters to be identified
+easily. The guessed messages and deciphered messaged are given in table
+\ref{tab:deciphered_messages}.
 
 \begin{table}[h]
   \centering
@@ -177,5 +230,26 @@ TODO
   \caption{Deciphered messages}
   \label{tab:deciphered_messages}
 \end{table}
+
+\subsection{Obtaining the original key}
+
+I also made an effort to retrieve the original pad used to encrypt the target
+cipher text, this is done using a program to do a simple XOR across two byte
+arrays and is executed using the \texttt{ex3\_retrieve\_pad} Bash script.
+
+The output of this program is shown in figure \ref{fig:retrieve_pad}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.55\textwidth]{graphics/ex3_obtain_pad.eps}
+  \caption{Retrieval of original pad}
+  \label{fig:retrieve_pad}
+\end{figure}
+
+This shows that the pad used to encrypt the target cipher text was \\
+\texttt{9d96e9fc8cd77b21e280973a8154e8d86b296057fc0767}, assuming that the
+message started with a capital letter (note that the pad shown in the figure has
+an additional \texttt{0x00} at the end of the pad, this is caused by the newline
+character when the plain text is loaded from a file).
 
 \end{document}
