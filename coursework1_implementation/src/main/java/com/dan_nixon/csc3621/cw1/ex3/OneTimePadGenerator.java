@@ -1,5 +1,8 @@
 package com.dan_nixon.csc3621.cw1.ex3;
 
+import java.security.SecureRandom;
+import java.nio.ByteBuffer;
+
 public class OneTimePadGenerator
 {
   /**
@@ -10,8 +13,7 @@ public class OneTimePadGenerator
    */
   public static byte[] generateOneTimePad(int length)
   {
-    int seed = (int) (System.currentTimeMillis() % Integer.MAX_VALUE);
-    return generateOneTimePad(seed, length);
+    return generateOneTimePad(System.currentTimeMillis(), length);
   }
 
   /**
@@ -21,17 +23,15 @@ public class OneTimePadGenerator
    * @param length Length of pad to generate
    * @return Generated pad
    */
-  public static byte[] generateOneTimePad(int seed, int length)
+  public static byte[] generateOneTimePad(long seed, int length)
   {
+    ByteBuffer seedBuff = ByteBuffer.allocate(8);
+    seedBuff.putLong(seed);
+
+    SecureRandom rand = new SecureRandom(seedBuff.array());
+
     byte[] pad = new byte[length];
-
-    pad[3] = (byte) (0x000000FF & seed);
-    pad[2] = (byte) ((0x0000FF00 & seed) >> 8);
-    pad[1] = (byte) ((0x00FF0000 & seed) >> 16);
-    pad[0] = (byte) ((0xFF000000 & seed) >> 24);
-
-    for (int i = 4; i < length; i++)
-      pad[i] = (byte) (pad[i-4] ^ pad[i-3]);
+    rand.nextBytes(pad);
 
     return pad;
   }
