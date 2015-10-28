@@ -3,7 +3,7 @@
 JAVA_FLAGS="-cp target/*.jar"
 CLASS=com.dan_nixon.csc3621.cw1.ex3.OTPAttackApp
 
-ANALYSIS_FLAGS="--analysis
+ANALYSIS_FLAGS="--analysis --verbose
  src/test/resources/ex3_cw_cipher_1.bin
  src/test/resources/ex3_cw_cipher_2.bin
  src/test/resources/ex3_cw_cipher_3.bin

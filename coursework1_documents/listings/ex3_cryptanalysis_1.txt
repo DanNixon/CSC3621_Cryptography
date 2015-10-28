@@ -1,0 +1,58 @@
+Cryptanalysis for file: src/test/resources/ex3_cw_cipher_1.bin
+0:bin-TC--V--YR-------TAI-I-----
+1:TAI-I--TF---E-O--K-TS-N----
+2:TS-A--TAM--T---KM--E---I------
+3:KM-H-A-R-----------T------
+4:KM-OC--E---H---KT--R----N--------
+5:KT-O------YW----DA-NAT--N-----
+- cat m-y -o-k at a -in-
+Cryptanalysis for file: src/test/resources/ex3_cw_cipher_2.bin
+0:bin--K-E---H--I--K-U-O--------
+1:bin--N-E-E-I----SM---SI--------
+2:SI--EN----HR-----------------
+3:HR--------T----ST---EI-SP-U------
+4:SP--U--V--------DB-----EP-----
+-- neve- r-i-s bu- i- p-u--
+Cryptanalysis for file: src/test/resources/ex3_cw_cipher_3.bin
+0:bin--K-E---H--I--K-U-O--------
+1:bin------A----L-I--K--N--------
+2:bin---ET----E-I--K-U---
+3:ET--K-V------N-I--E--N-----------
+4:ET----HF--H--S---EO-O---------
+--ke fa-he- -ike -on
+Cryptanalysis for file: src/test/resources/ex3_cw_cipher_4.bin
+0:bin--N-E-E-I----SM---SI--------
+1:SI------A----L-I--K--N--------
+2:SI---YT-U--T---LM-------------
+3:LM--N-V-R--------------SM-C------
+4:SM----HAI-I----E-A--ST-EM-----
+--ny a -it-l- mak-s - m-c---
+Cryptanalysis for file: src/test/resources/ex3_cw_cipher_5.bin
+0:bin--EN----HR-----------------
+1:HR---ET----E-I--K-U---
+2:ET---YT-U--T---LM-------------
+3:LM--EE-----H---LT----------------
+4:LT---T-R--HW----DO------------
+--e tru-h -i-l ou-
+Cryptanalysis for file: src/test/resources/ex3_cw_cipher_6.bin
+0:bin--------T----ST---EI-SP-U------
+1:SP--K-V------N-I--E--N-----------
+2:SP--N-V-R--------------SM-C------
+3:SM--EE-----H---LT----------------
+4:LT--U--E--T----E-H--ET----O------
+-- ever-th-n- the-e -s - ------
+Cryptanalysis for file: src/test/resources/ex3_cw_cipher_7.bin
+0:bin--U--V--------DB-----EP-----
+1:EP----HF--H--S---EO-O---------
+2:EO----HAI-I----E-A--ST-EM-----
+3:EM---T-R--HW----DO------------
+4:DO--U--E--T----E-H--ET----O------
+--uth i- w-s-ed o- t-e -o---
+Cryptanalysis for file: src/test/resources/ex3_cw_cipher_target.bin
+0:bin--UN---------SY------R-----
+1:SY---EH---H--N-I--U-O----
+2:EH---YH-V-I---------SW-R------
+3:SW--------HD---LY--------
+4:LY--UE----T---------EW--K--------
+5:EW---T-A-------E-O------K-----
+--u hav- d-n- you- w-rk

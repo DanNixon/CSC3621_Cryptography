@@ -15,6 +15,7 @@
 \usepackage{titlesec}
 \usepackage{fancyhdr}
 \usepackage[section]{placeins}
+\usepackage{minted}
 
 % Handle graphics correctly
 \ifx\pdftexversion\undefined
@@ -87,7 +88,7 @@ pad file.
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.75\textwidth]{graphics/ex3_pad_generation.eps}
+  \includegraphics[width=0.6\textwidth]{graphics/ex3_pad_generation.eps}
   \caption{Generation of a one time pad}
   \label{fig:generate_pad}
 \end{figure}
@@ -131,7 +132,7 @@ The result of this are shown in figure \ref{fig:enc_dec_cycle}.
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.75\textwidth]{graphics/ex3_enc_dec_cycle.eps}
+  \includegraphics[width=0.6\textwidth]{graphics/ex3_enc_dec_cycle.eps}
   \caption{Encryption and decryption cycle}
   \label{fig:enc_dec_cycle}
 \end{figure}
@@ -139,5 +140,42 @@ The result of this are shown in figure \ref{fig:enc_dec_cycle}.
 \section{Cryptanalysis of cipher data}
 
 TODO
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{graphics/ex3_cryptanalysis_1.eps}
+  \caption{Execution of cryptanalysis program}
+  \label{fig:cryptanalysis}
+\end{figure}
+
+TODO
+
+\begin{listing}
+  \inputminted[frame=lines,fontsize=\scriptsize]{text}{listings/ex3_cryptanalysis_1.txt}
+  \caption{Verbose output of cryptanalysis program}
+  \label{listing:cryptanalysis_verbose}
+\end{listing}
+
+TODO
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{lll}
+    \hline
+    Ciphertext  & Analysis                                  & Message                         \\
+    \hline
+    1           & \texttt{- cat m-y -o-k at a -in-}         & A cat may look at a king        \\
+    2           & \texttt{-- neve- r-i-s bu- i- p-u--}      & It never rains but it pours     \\
+    3           & \texttt{--ke fa-he- -ike -on}             & Like father like son            \\
+    4           & \texttt{--ny a -it-l- mak-s - m-c---}     & Many a little makes a mickle    \\
+    5           & \texttt{--e tru-h -i-l ou-}               & The truth will out              \\
+    6           & \texttt{-- ever-th-n- the-e -s - ------}  & In everything there is a season \\
+    7           & \texttt{--uth i- w-s-ed o- t-e -o---}     & Youth is wasted on the young    \\
+    Target      & \texttt{--u hav- d-n- you- w-rk}          & You have done your work         \\
+    \hline
+  \end{tabular}
+  \caption{Deciphered messages}
+  \label{tab:deciphered_messages}
+\end{table}
 
 \end{document}
