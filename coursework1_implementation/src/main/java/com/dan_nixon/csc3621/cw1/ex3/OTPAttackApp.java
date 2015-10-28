@@ -62,11 +62,6 @@ public class OTPAttackApp
     // Also output analysis strings
     boolean verbose = options.containsKey("verbose");
 
-    // Get character match tolerance
-    double charMatchThreshold = 0.95;
-    if (options.containsKey("match-threshold"))
-      charMatchThreshold = Double.parseDouble(options.get("match-threshold"));
-
     // Cipher file to be cryptanalysed
     File targetCipherFile = new File(options.get("target-cipher"));
 
@@ -80,7 +75,7 @@ public class OTPAttackApp
     byte[] targetCipher = Utils.readBinaryFile(targetCipherFile);
     OTPAttack otpa = new OTPAttack(analysisCipherFiles);
     String[] analysisStrings = otpa.getAnalysisStrings(targetCipher);
-    String messageGuess = otpa.guessPlainTextFromAnalysis(analysisStrings, targetCipher.length, charMatchThreshold);
+    String messageGuess = otpa.guessPlainTextFromAnalysis(analysisStrings, targetCipher.length);
 
     if (verbose)
     {

@@ -81,13 +81,10 @@ public class OTPAttack
    *
    * @param analysisStrings Cryptanalysis strings
    * @param cipherLength Length of the original cipher data
-   * @param validCharThreshold Threshold at which a characters is assumed to be
-   *                           correct in a given position
    * @return Best guess of plain text message
    */
   public String guessPlainTextFromAnalysis(String[] analysisStrings,
-                                           int cipherLength,
-                                           double validCharThreshold)
+                                           int cipherLength)
   {
     char[] messageChars = new char[cipherLength];
 
@@ -128,7 +125,7 @@ public class OTPAttack
 
       // If the majority is all one character then the plain text message is
       // likely to be that character
-      if (norm[normMax] >= validCharThreshold)
+      if (norm[normMax] >= 0.95)
         messageChars[i] = Utils.getCharFromIndex(normMax);
       // Otherwise it is likely to be a space
       else

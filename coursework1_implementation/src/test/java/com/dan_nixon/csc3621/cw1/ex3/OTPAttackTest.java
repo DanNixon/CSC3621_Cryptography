@@ -70,7 +70,7 @@ public class OTPAttackTest
     byte[] targetCipher = Utils.readBinaryFile(target);
 
     String[] analysisStrings = otpa.getAnalysisStrings(targetCipher);
-    String messageGuess = otpa.guessPlainTextFromAnalysis(analysisStrings, targetCipher.length, 0.8);
+    String messageGuess = otpa.guessPlainTextFromAnalysis(analysisStrings, targetCipher.length);
 
     assertEquals("-ou hav- d-n- your w-rk", messageGuess);
   }
