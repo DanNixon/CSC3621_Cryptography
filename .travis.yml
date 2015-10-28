@@ -9,7 +9,7 @@ jdk:
   - oraclejdk8
 
 script:
-  - cd coursework1_implementation
+  - cd coursework1/implementation
   - mvn install -DskipTests=true -q
   - mvn test
   - ./ex1_run_frequency_analysis

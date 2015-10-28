@@ -17,7 +17,8 @@ buildNumber.properties
 *.bcf
 *.out
 *.pyg
-*.xml
 *.blg
 *.fls
 *_latexmk
+*.xml
+!pom.xml
