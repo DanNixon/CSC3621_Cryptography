@@ -26,10 +26,25 @@ echo "CIPHER FILE:"
 xxd $TEST_CIPHER_FILE
 
 # Decrypt all other ciphers
+echo "CIPHERTEXT 1:"
 java $JAVA_FLAGS $ENC_CLASS --decrypt --pad-file $PAD_FILE --cipher-file src/test/resources/ex3_cw_cipher_1.bin
+
+echo "CIPHERTEXT 2:"
 java $JAVA_FLAGS $ENC_CLASS --decrypt --pad-file $PAD_FILE --cipher-file src/test/resources/ex3_cw_cipher_2.bin
+
+echo "CIPHERTEXT 3:"
 java $JAVA_FLAGS $ENC_CLASS --decrypt --pad-file $PAD_FILE --cipher-file src/test/resources/ex3_cw_cipher_3.bin
+
+echo "CIPHERTEXT 4:"
 java $JAVA_FLAGS $ENC_CLASS --decrypt --pad-file $PAD_FILE --cipher-file src/test/resources/ex3_cw_cipher_4.bin
+
+echo "CIPHERTEXT 5:"
 java $JAVA_FLAGS $ENC_CLASS --decrypt --pad-file $PAD_FILE --cipher-file src/test/resources/ex3_cw_cipher_5.bin
+
+echo "CIPHERTEXT 6:"
 java $JAVA_FLAGS $ENC_CLASS --decrypt --pad-file $PAD_FILE --cipher-file src/test/resources/ex3_cw_cipher_6.bin
+
+echo "CIPHERTEXT 7:"
 java $JAVA_FLAGS $ENC_CLASS --decrypt --pad-file $PAD_FILE --cipher-file src/test/resources/ex3_cw_cipher_7.bin
+
+exit 0

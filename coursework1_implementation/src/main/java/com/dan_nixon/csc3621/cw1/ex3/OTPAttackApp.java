@@ -39,7 +39,6 @@ public class OTPAttackApp
         result = Utils.byteArrayToString(xor);
       else if (options.containsKey("hex"))
         result = Utils.byteArrayToHexString(xor);
-      System.out.println(result);
 
       if (options.containsKey("output"))
       {
