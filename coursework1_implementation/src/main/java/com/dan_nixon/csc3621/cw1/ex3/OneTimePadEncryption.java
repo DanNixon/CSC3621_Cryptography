@@ -67,6 +67,9 @@ public class OneTimePadEncryption
    */
   public String decrypt(byte[] cipherData) throws UnsupportedEncodingException
   {
+    if (cipherData.length > m_pad.length)
+      throw new RuntimeException("Pad too short");
+
     byte[] plainTextData = new byte[cipherData.length];
 
     // XOR cipher data with pad

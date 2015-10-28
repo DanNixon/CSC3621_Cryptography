@@ -18,12 +18,12 @@ public class OTPAttackApp
   public static void main(String[] args) throws IOException
   {
     Map<String, String> options = Utils.parseCommandLine(args);
+    String result = "";
 
     if (options.containsKey("analysis"))
     {
       System.out.println("Cryptanalysis for file: " + options.get("target-cipher"));
-      String result = runCryptanalysisMode(options);
-      System.out.println(result);
+      result = runCryptanalysisMode(options);
     }
     else if (options.containsKey("xor"))
     {
@@ -35,7 +35,6 @@ public class OTPAttackApp
 
       byte[] xor = Utils.arrayXor(dataA, dataB);
 
-      String result = "";
       if (options.containsKey("ascii"))
         result = Utils.byteArrayToString(xor);
       else if (options.containsKey("hex"))
@@ -48,6 +47,8 @@ public class OTPAttackApp
         Utils.writeBinaryFile(out, xor);
       }
     }
+
+    System.out.println(result);
   }
 
   /**
