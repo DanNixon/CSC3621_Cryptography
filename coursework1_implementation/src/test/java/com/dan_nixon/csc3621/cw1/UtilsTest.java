@@ -156,4 +156,13 @@ public class UtilsTest
     String str = Utils.byteArrayToString(a);
     assertEquals("hello-", str);
   }
+
+  @Test
+  public void testByteArrayToHexString()
+  {
+    byte[] a = {(byte) 0x68, (byte) 0x65, (byte) 0x6C, (byte) 0x6C,
+                (byte) 0x6F, (byte) 0x99};
+    String str = Utils.byteArrayToHexString(a);
+    assertEquals("68656c6c6f99", str);
+  }
 }

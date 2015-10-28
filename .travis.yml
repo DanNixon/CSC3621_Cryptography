@@ -23,6 +23,7 @@ script:
   - ./ex3_generate_pad
   - ./ex3_encrypt_decrypt_cycle
   - ./ex3_cryptanalysis
+  - ./ex3_retreive_pad
 
 notifications:
   email:

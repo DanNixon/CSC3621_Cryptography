@@ -197,7 +197,9 @@ public class Utils
   }
 
   /**
-   * Converts a byte array to a String.
+   * Converts a byte array to a String as ASCII characters.
+   *
+   * '-' denotes a value out of the a-z and A-Z ranges.
    *
    * @param arr Byte array to convert
    * @return Byte array as string
@@ -210,9 +212,30 @@ public class Utils
     {
       byte b = arr[i];
       if ((b >= 'A' && b <= 'Z') || (b >= 'a' && b < 'z'))
-        sb.append((char)(b & 0xff));
+        sb.append((char)(b & 0xFF));
       else
         sb.append("-");
+    }
+
+    return sb.toString();
+  }
+
+  /**
+   * Converts a byte array to a String containing hexadecimal values.
+   *
+   * @param arr Byte array to convert
+   * @return Byte array as string
+   */
+  public static String byteArrayToHexString(byte[] arr)
+  {
+    StringBuilder sb = new StringBuilder();
+
+    for (int i = 0; i < arr.length; i++)
+    {
+      String hexStr = Integer.toHexString(arr[i] & 0xFF);
+      if (hexStr.length() == 1)
+        sb.append(0);
+      sb.append(hexStr);
     }
 
     return sb.toString();

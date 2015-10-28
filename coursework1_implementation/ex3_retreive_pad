@@ -1,0 +1,29 @@
+#!/bin/bash
+
+JAVA_FLAGS="-cp target/*.jar"
+ATTACK_CLASS=com.dan_nixon.csc3621.cw1.ex3.OTPAttackApp
+ENC_CLASS=com.dan_nixon.csc3621.cw1.ex3.OneTimePadApp
+
+CIPHER_FILE=src/test/resources/ex3_cw_cipher_target.bin
+PLAIN_FILE=src/test/resources/ex3_cw_plain_target.txt
+PAD_FILE=pad.bin
+TEST_CIPHER_FILE=test_cipher.bin
+
+# Retrieve pad
+echo "PAD:"
+java $JAVA_FLAGS $ATTACK_CLASS --xor -hex -a $CIPHER_FILE -b $PLAIN_FILE --output $PAD_FILE
+
+# Encrypt
+java $JAVA_FLAGS $ENC_CLASS --encrypt --pad-file $PAD_FILE --cipher-file $TEST_CIPHER_FILE --message-file $PLAIN_FILE
+
+echo "PAD FILE:"
+xxd $PAD_FILE
+
+echo "ORIGINAL CIPHER FILE:"
+xxd $CIPHER_FILE
+
+echo "CIPHER FILE:"
+xxd $TEST_CIPHER_FILE
+
+rm $PAD_FILE
+rm $TEST_CIPHER_FILE

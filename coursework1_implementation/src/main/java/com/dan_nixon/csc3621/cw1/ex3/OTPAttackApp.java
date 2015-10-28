@@ -27,7 +27,26 @@ public class OTPAttackApp
     }
     else if (options.containsKey("xor"))
     {
-      //TODO
+      File fileA = new File(options.get("a"));
+      File fileB = new File(options.get("b"));
+
+      byte[] dataA = Utils.readBinaryFile(fileA);
+      byte[] dataB = Utils.readBinaryFile(fileB);
+
+      byte[] xor = Utils.arrayXor(dataA, dataB);
+
+      String result = "";
+      if (options.containsKey("ascii"))
+        result = Utils.byteArrayToString(xor);
+      else if (options.containsKey("hex"))
+        result = Utils.byteArrayToHexString(xor);
+      System.out.println(result);
+
+      if (options.containsKey("output"))
+      {
+        File out = new File(options.get("output"));
+        Utils.writeBinaryFile(out, xor);
+      }
     }
   }
 
