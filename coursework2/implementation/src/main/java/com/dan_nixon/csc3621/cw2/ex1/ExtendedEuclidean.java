@@ -81,12 +81,12 @@ public class ExtendedEuclidean
     sb.append("d=");
     sb.append(m_d);
     
-    sb.append("\n");
+    sb.append(System.getProperty("line.separator"));
     
     sb.append("s=");
     sb.append(m_s);
     
-    sb.append("\n");
+    sb.append(System.getProperty("line.separator"));
     
     sb.append("t=");
     sb.append(m_t);

@@ -38,7 +38,10 @@ public class ExtendedEuclideanTest
     assertEquals(new BigInteger("-9"), ee.getS());
     assertEquals(new BigInteger("47"), ee.getT());
     
-    assertEquals("d=2\ns=-9\nt=47", ee.toString());
+    final String expectedStr = "d=2" + System.getProperty("line.separator")
+                             + "s=-9" + System.getProperty("line.separator")
+                             + "t=47";
+    assertEquals(expectedStr, ee.toString());
   }
   
   @Test

@@ -25,9 +25,10 @@ script:
   - ./ex3_cryptanalysis
   - ./ex3_retreive_pad
   - cd ../..
-  - cd coursework1/implementation
+  - cd coursework2/implementation
   - mvn install -DskipTests=true -q
   - mvn test
+  - ./ex1_extended_euclidean
 
 notifications:
   email:

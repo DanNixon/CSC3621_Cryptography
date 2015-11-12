@@ -1,0 +1,12 @@
+#!/bin/bash
+
+JAVA_FLAGS="-cp target/*.jar"
+CLASS=com.dan_nixon.csc3621.cw2.ex1.ExtendedEuclideanApp
+
+X=1572855870797393
+Y=630065648824575
+OUT_FILE=extended_euclidean_output.txt
+
+java $JAVA_FLAGS $CLASS $X $Y $OUT_FILE
+
+cat $OUT_FILE
