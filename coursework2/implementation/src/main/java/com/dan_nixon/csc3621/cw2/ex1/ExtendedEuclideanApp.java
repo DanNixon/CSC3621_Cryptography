@@ -19,15 +19,15 @@ public class ExtendedEuclideanApp
     // Get input data
     BigInteger x = new BigInteger(args[0]);
     BigInteger y = new BigInteger(args[1]);
-    
+
     // Run GCD
     ExtendedEuclidean ee = new ExtendedEuclidean();
     ee.gcd(x, y);
-    
+
     // Create output file
     File outFile = new File(args[2]);
     outFile.createNewFile();
-    
+
     // Output results to file
     PrintWriter writer = new PrintWriter(new FileOutputStream(outFile));
     try

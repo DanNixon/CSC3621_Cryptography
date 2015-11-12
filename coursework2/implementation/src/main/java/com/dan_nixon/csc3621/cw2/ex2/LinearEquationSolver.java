@@ -13,25 +13,25 @@ public class LinearEquationSolver
    * @return Value of x, null if could not solve
    */
   public static BigInteger solve(BigInteger a, BigInteger b, BigInteger n)
-  { 
+  {
     BigInteger inverseA = modularInverse(a, n);
     if (inverseA == null)
       return null;
-    
+
     // x = -b . a^-1
     BigInteger x = b.negate().multiply(inverseA);
-    
+
     return x;
   }
-  
+
   public static BigInteger modularInverse(BigInteger x, BigInteger y)
   {
     ExtendedEuclidean ee = new ExtendedEuclidean();
     ee.gcd(x, y);
-    
+
     if (!ee.getD().equals(BigInteger.ONE))
       return null;
-    
+
     return ee.getS().mod(y);
   }
 }

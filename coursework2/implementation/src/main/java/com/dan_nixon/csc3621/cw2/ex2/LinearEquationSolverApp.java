@@ -14,11 +14,11 @@ public class LinearEquationSolverApp
     BigInteger a = new BigInteger(args[0]);
     BigInteger b = new BigInteger(args[1]);
     BigInteger n = new BigInteger(args[2]);
-    
+
     BigInteger x = LinearEquationSolver.solve(a, b, n);
-    
+
     if (x == null)
-      System.out.println("No solution");
+      System.out.println("No solution.");
     else
       System.out.println(x);
   }
