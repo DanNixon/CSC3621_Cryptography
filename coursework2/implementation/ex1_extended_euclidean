@@ -10,3 +10,4 @@ OUT_FILE=extended_euclidean_output.txt
 java $JAVA_FLAGS $CLASS $X $Y $OUT_FILE
 
 cat $OUT_FILE
+echo
