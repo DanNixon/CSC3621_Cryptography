@@ -28,7 +28,7 @@ public class ExtendedEuclidean
     while(!r1.equals(BigInteger.ZERO))
     {
       BigInteger q = r0.divide(r1);
-      BigInteger r2 = r0.mod(r1);
+      BigInteger r2 = r0.remainder(r1);
       
       BigInteger s2 = s0.subtract(s1.multiply(q));
       BigInteger t2 = t0.subtract(t1.multiply(q));

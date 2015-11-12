@@ -29,6 +29,8 @@ script:
   - mvn install -DskipTests=true -q
   - mvn test
   - ./ex1_extended_euclidean
+  - ./ex2_solve_2a
+  - ./ex2_solve_2b
 
 notifications:
   email:

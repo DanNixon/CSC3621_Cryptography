@@ -7,10 +7,25 @@ import static org.junit.Assert.*;
 public class LinearEquationSolverTest
 {
   @Test
-  public void testCreate()
+  public void testInverse_Dataset1()
   {
-    LinearEquationSolver solver = new LinearEquationSolver();
-    assertEquals(null, solver.getX());
+    BigInteger x = BigInteger.valueOf(3);
+    BigInteger y = BigInteger.valueOf(7);
+    
+    BigInteger inverse = LinearEquationSolver.modularInverse(x, y);
+    assertEquals(BigInteger.valueOf(5), inverse);
+    assertEquals(x.modInverse(y), inverse);
+  }
+  
+  @Test
+  public void testInverse_Dataset2()
+  {
+    BigInteger x = BigInteger.valueOf(27);
+    BigInteger y = BigInteger.valueOf(392);
+    
+    BigInteger inverse = LinearEquationSolver.modularInverse(x, y);
+    assertEquals(BigInteger.valueOf(363), inverse);
+    assertEquals(x.modInverse(y), inverse);
   }
   
   @Test
@@ -20,11 +35,13 @@ public class LinearEquationSolverTest
     final BigInteger a = new BigInteger("34325464564574564564768795534569998743457687643234566579654234676796634378768434237897634345765879087764242354365767869780876543424");
     final BigInteger b = new BigInteger("45292384209127917243621242398573220935835723464332452353464376432246757234546765745246457656354765878442547568543334677652352657235");
     
-    LinearEquationSolver solver = new LinearEquationSolver();
-    solver.solve(a, b, n);
+    BigInteger x = LinearEquationSolver.solve(a, b, n);
     
-    final BigInteger expectedX = new BigInteger("0");
-    //assertEquals(expectedX, solver.getX());
+    final BigInteger v = a.multiply(x).add(b).mod(n);
+    assertEquals(BigInteger.ZERO, v);
+    
+    final BigInteger expectedX = new BigInteger("-9955371992263146525426797302244499529858945673828377732405832980653227092300043659075227286847259399900354322059218021998238906165105572770701564267124117486332230592920337411816660255632675433601567548366799617051620481845881274222151308731446677835482446479782040949059454921531067600646548100665624585878515830259486100709196864794291200");
+    assertEquals(expectedX, x);
   }
   
   @Test
@@ -34,10 +51,9 @@ public class LinearEquationSolverTest
     final BigInteger a = new BigInteger("34325464564574564564768795534569998743457687643234566579654234676796634378768434237897634345765879087764242354365767869780876543424");
     final BigInteger b = new BigInteger("24243252873562935279236582385723952735639239823957923562835832582635283562852252525256882909285959238420940257295265329820035324646");
     
-    LinearEquationSolver solver = new LinearEquationSolver();
-    solver.solve(a, b, n);
+    BigInteger x = LinearEquationSolver.solve(a, b, n);
     
-    final BigInteger expectedX = new BigInteger("0");
-    //assertEquals(expectedX, solver.getX());
+    final BigInteger expectedX = null;
+    assertEquals(expectedX, x);
   }
 }
