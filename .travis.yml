@@ -24,6 +24,10 @@ script:
   - ./ex3_encrypt_decrypt_cycle
   - ./ex3_cryptanalysis
   - ./ex3_retreive_pad
+  - cd ../..
+  - cd coursework1/implementation
+  - mvn install -DskipTests=true -q
+  - mvn test
 
 notifications:
   email:
