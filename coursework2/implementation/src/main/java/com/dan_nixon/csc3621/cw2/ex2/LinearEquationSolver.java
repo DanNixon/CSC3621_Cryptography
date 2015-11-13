@@ -19,7 +19,7 @@ public class LinearEquationSolver
       return null;
 
     // x = -b . a^-1
-    BigInteger x = b.negate().multiply(inverseA);
+    BigInteger x = b.negate().multiply(inverseA).mod(n);
 
     return x;
   }
