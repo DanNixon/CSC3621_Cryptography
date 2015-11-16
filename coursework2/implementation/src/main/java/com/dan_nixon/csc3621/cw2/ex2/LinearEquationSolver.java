@@ -23,15 +23,39 @@ public class LinearEquationSolver
 
     return x;
   }
+  
+  /**
+   * Solves the linear equation ax + b = 0 in Z_n using the
+   * BigInteger.modInverse function o obtain the modular inverse.
+   * @param a Value of a
+   * @param b Value of b
+   * @param n Modulus size
+   * @return Value of x, null if could not solve
+   */
+  public static BigInteger solveJSL(BigInteger a, BigInteger b, BigInteger n)
+  {
+    BigInteger inverseA = a.modInverse(n);
 
-  public static BigInteger modularInverse(BigInteger x, BigInteger y)
+    // x = -b . a^-1
+    BigInteger x = b.negate().multiply(inverseA).mod(n);
+
+    return x;
+  }
+
+  /**
+   * Obtains the modular inverse x^-1 , such that x^-1 * x = 1 (mod n)
+   * @param x
+   * @param n
+   * @return Modular inverse, null if no inverse exists
+   */
+  public static BigInteger modularInverse(BigInteger x, BigInteger n)
   {
     ExtendedEuclidean ee = new ExtendedEuclidean();
-    ee.gcd(x, y);
+    ee.gcd(x, n);
 
     if (!ee.getD().equals(BigInteger.ONE))
       return null;
 
-    return ee.getS().mod(y);
+    return ee.getS().mod(n);
   }
 }
