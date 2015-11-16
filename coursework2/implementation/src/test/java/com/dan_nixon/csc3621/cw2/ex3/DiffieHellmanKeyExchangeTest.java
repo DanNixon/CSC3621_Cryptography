@@ -32,4 +32,18 @@ public class DiffieHellmanKeyExchangeTest
     DiffieHellmanKeyExchange dhke = new DiffieHellmanKeyExchange(BigInteger.valueOf(1), BigInteger.valueOf(1));
     dhke.computeKeyB();
   }
+  
+  @Test
+  public void testExchange()
+  {
+    DiffieHellmanKeyExchange dhke = new DiffieHellmanKeyExchange(BigInteger.valueOf(1234), BigInteger.valueOf(9876));
+    dhke.computeMessageAtoB();
+    dhke.computeMessageBtoA();
+    dhke.computeKeyA();
+    dhke.computeKeyB();
+    
+    System.out.println(dhke);
+    
+    assertEquals(dhke.getKeyA(), dhke.getKeyB());
+  }
 }

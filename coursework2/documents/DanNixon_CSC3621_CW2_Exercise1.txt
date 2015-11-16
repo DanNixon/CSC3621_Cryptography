@@ -1,9 +1,11 @@
 Exercise 1
 
-Question 2
+2)
+
 TODO
 
-Question 3
+3)
+
 Uses of the Extended Euclidian algorithm include:
 - Computing the multiplicative inverses (Zp)* of Zp
 - 

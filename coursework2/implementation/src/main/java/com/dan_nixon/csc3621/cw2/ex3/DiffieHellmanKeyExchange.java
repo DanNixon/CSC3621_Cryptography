@@ -1,19 +1,28 @@
 package com.dan_nixon.csc3621.cw2.ex3;
 
 import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.EnumMap;
 import java.util.Map;
 
+enum ExchangeRole
+{
+  A,
+  B
+}
+
 enum MessagePayload
 {
-  PLD_MOD,
-  PLD_BASE,
-  PLD_A,
-  PLD_B
+  MOD,
+  BASE,
+  A,
+  B
 }
 
 public class DiffieHellmanKeyExchange
 {
+  public static final int PRIME = 15485863;
+  
   public DiffieHellmanKeyExchange(BigInteger secretA, BigInteger secretB)
   {
     m_secretA = secretA;
@@ -25,40 +34,84 @@ public class DiffieHellmanKeyExchange
     m_keyB = null;
   }
   
+  /**
+   * Computes the message to be sent from participant A to participant B.
+   */
   public void computeMessageAtoB()
   {
-    m_msgBtoA = new EnumMap<MessagePayload, BigInteger>(MessagePayload.class);
+    m_msgAtoB = new EnumMap<MessagePayload, BigInteger>(MessagePayload.class);
     
-    //TODO
+    SecureRandom rng = new SecureRandom();
+    BigInteger n = new BigInteger(1024, rng);
+    BigInteger g = BigInteger.valueOf(rng.nextInt(PRIME - 1) + 2);
+    
+    m_msgAtoB.put(MessagePayload.MOD, n);
+    m_msgAtoB.put(MessagePayload.BASE, g);
+    
+    BigInteger a = g.modPow(m_secretA, n);
+    
+    m_msgAtoB.put(MessagePayload.A, a);
   }
   
+  /**
+   * Computes the message to be sent from participant B to participant A.
+   * Must be called after computeMessageAtoB().
+   */
   public void computeMessageBtoA()
   {
     if(m_msgAtoB == null)
       throw new IllegalStateException("Message from A to B has not been computed");
     
-    m_msgAtoB = new EnumMap<MessagePayload, BigInteger>(MessagePayload.class);
+    m_msgBtoA = new EnumMap<MessagePayload, BigInteger>(MessagePayload.class);
     
-    //TODO
+    BigInteger g = m_msgAtoB.get(MessagePayload.BASE);
+    BigInteger n = m_msgAtoB.get(MessagePayload.MOD);
+    
+    BigInteger b = g.modPow(m_secretB, n);
+    
+    m_msgBtoA.put(MessagePayload.B, b);
   }
   
-  public void computeKeyA()
+  /**
+   * Computes key for participant A.
+   * Must be called after computeMessageBtoA().
+   */
+  public void computeKeyA() throws IllegalStateException
   {
     if(m_msgBtoA == null)
       throw new IllegalStateException("Message from B to A has not been computed");
     
-    //TODO
+    BigInteger g = m_msgAtoB.get(MessagePayload.BASE);
+    BigInteger n = m_msgAtoB.get(MessagePayload.MOD);
+    
+    BigInteger b = m_msgBtoA.get(MessagePayload.B);
+    
+    m_keyA = b.modPow(m_secretA, n);
   }
   
-  public void computeKeyB()
+  /**
+   * Computes key for participant B.
+   * Must be called after computeMessageAtoB().
+   */
+  public void computeKeyB() throws IllegalStateException
   {
     if(m_msgAtoB == null)
       throw new IllegalStateException("Message from A to B has not been computed");
     
-    //TODO
+    BigInteger g = m_msgAtoB.get(MessagePayload.BASE);
+    BigInteger n = m_msgAtoB.get(MessagePayload.MOD);
+    
+    BigInteger a = m_msgAtoB.get(MessagePayload.A);
+    
+    m_keyB = a.modPow(m_secretB, n);
   }
   
-  public Map<MessagePayload, BigInteger> getMessageAtoB()
+  /**
+   * Returns the message structure for the message sent from participant A to participant B.
+   * Must be called after computeMessageAtoB().
+   * @return Message payload
+   */
+  public Map<MessagePayload, BigInteger> getMessageAtoB() throws IllegalStateException
   {
     if(m_msgAtoB == null)
       throw new IllegalStateException("Message from A to B has not been computed");
@@ -66,7 +119,12 @@ public class DiffieHellmanKeyExchange
     return m_msgAtoB;
   }
   
-  public Map<MessagePayload, BigInteger> getMessageBtoA()
+  /**
+   * Returns the message structure for the message sent from participant B to participant A.
+   * Must be called after computeMessageBtoA().
+   * @return Message payload
+   */
+  public Map<MessagePayload, BigInteger> getMessageBtoA() throws IllegalStateException
   {
     if(m_msgBtoA == null)
       throw new IllegalStateException("Message from B to A has not been computed");
@@ -74,7 +132,12 @@ public class DiffieHellmanKeyExchange
     return m_msgBtoA;
   }
   
-  public BigInteger getKeyA()
+  /**
+   * Returns the computed key for participant A.
+   * Must be called after computeKeyA().
+   * @return Key A
+   */
+  public BigInteger getKeyA() throws IllegalStateException
   {
     if(m_keyA == null)
       throw new IllegalStateException("Key A has not been computed");
@@ -82,12 +145,17 @@ public class DiffieHellmanKeyExchange
     return m_keyA;
   }
   
-  public BigInteger getKeyB()
+  /**
+   * Returns the computed key for participant B.
+   * Must be called after computeKeyB().
+   * @return Key B
+   */
+  public BigInteger getKeyB() throws IllegalStateException
   {
     if(m_keyB == null)
       throw new IllegalStateException("Key B has not been computed");
     
-    return m_keyA;
+    return m_keyB;
   }
   
   @Override
@@ -107,28 +175,28 @@ public class DiffieHellmanKeyExchange
     if (m_msgAtoB == null)
       sb.append((Object) null);
     else
-      sb.append(m_msgBtoA.get(MessagePayload.PLD_MOD));
+      sb.append(m_msgAtoB.get(MessagePayload.MOD));
     sb.append(System.getProperty("line.separator"));
     
     sb.append("msg1.base=");
     if (m_msgAtoB == null)
       sb.append((Object) null);
     else
-      sb.append(m_msgBtoA.get(MessagePayload.PLD_BASE));
+      sb.append(m_msgAtoB.get(MessagePayload.BASE));
     sb.append(System.getProperty("line.separator"));
     
     sb.append("msg1.valueA=");
     if (m_msgAtoB == null)
       sb.append((Object) null);
     else
-      sb.append(m_msgBtoA.get(MessagePayload.PLD_A));
+      sb.append(m_msgAtoB.get(MessagePayload.A));
     sb.append(System.getProperty("line.separator"));
     
     sb.append("msg2.valueB=");
     if (m_msgBtoA == null)
       sb.append((Object) null);
     else
-      sb.append(m_msgBtoA.get(MessagePayload.PLD_B));
+      sb.append(m_msgBtoA.get(MessagePayload.B));
     sb.append(System.getProperty("line.separator"));
     
     sb.append("keyA=");
