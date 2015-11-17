@@ -88,7 +88,7 @@ public class DiffieHellmanKeyExchange
    */
   public Map<MessagePayload, BigInteger> computeMessageAtoB()
   {
-    Map<MessagePayload, BigInteger> msg = new EnumMap<MessagePayload, BigInteger>(MessagePayload.class);
+    Map<MessagePayload, BigInteger> msgAtoB = new EnumMap<MessagePayload, BigInteger>(MessagePayload.class);
 
     SecureRandom rng = new SecureRandom();
     m_n = new BigInteger(1024, rng);
@@ -96,11 +96,11 @@ public class DiffieHellmanKeyExchange
 
     BigInteger a = m_g.modPow(m_secret, m_n);
 
-    msg.put(MessagePayload.MOD, m_n);
-    msg.put(MessagePayload.BASE, m_g);
-    msg.put(MessagePayload.A, a);
+    msgAtoB.put(MessagePayload.MOD, m_n);
+    msgAtoB.put(MessagePayload.BASE, m_g);
+    msgAtoB.put(MessagePayload.A, a);
 
-    return msg;
+    return msgAtoB;
   }
 
   /**
@@ -143,15 +143,21 @@ public class DiffieHellmanKeyExchange
   }
 
   /**
+   * Returns the secret for this participant.
+   * @return Secret
+   */
+  public BigInteger getSecret()
+  {
+    return m_secret;
+  }
+
+  /**
    * Returns the computed key.
    * Must be called after computeKey().
-   * @return Key
+   * @return Key, null if not yet computed
    */
   public BigInteger getKey() throws IllegalStateException
   {
-    if(m_key == null)
-      throw new IllegalStateException("Key has not been computed");
-
     return m_key;
   }
 

@@ -38,12 +38,6 @@ public class DiffieHellmanKeyExchangeTest
   }
 
   @Test
-  public void testCreate()
-  {
-    DiffieHellmanKeyExchange dhke = new DiffieHellmanKeyExchange(BigInteger.valueOf(1));
-  }
-
-  @Test
   public void testExchange()
   {
     DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange(BigInteger.valueOf(1234));
