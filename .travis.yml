@@ -31,6 +31,7 @@ script:
   - ./ex1_extended_euclidean
   - ./ex2_solve_2a
   - ./ex2_solve_2b
+  - ./ex3_key_exchange
 
 notifications:
   email:

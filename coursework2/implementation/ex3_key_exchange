@@ -1,0 +1,9 @@
+#!/bin/bash
+
+JAVA_FLAGS="-cp target/*.jar"
+CLASS=com.dan_nixon.csc3621.cw2.ex3.DiffieHellmanKeyExchangeApp
+
+SECRET_A=1234
+SECRET_B=9876
+
+java $JAVA_FLAGS $CLASS $SECRET_A $SECRET_B

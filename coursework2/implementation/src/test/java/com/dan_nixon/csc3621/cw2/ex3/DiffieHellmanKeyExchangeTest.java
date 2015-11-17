@@ -13,17 +13,17 @@ public class DiffieHellmanKeyExchangeTest
   {
     DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange(BigInteger.valueOf(1234));
     DiffieHellmanKeyExchange b = new DiffieHellmanKeyExchange(BigInteger.valueOf(9876));
-    
+
     Map<MessagePayload, BigInteger> msgAtoB = new EnumMap<MessagePayload, BigInteger>(MessagePayload.class);
     msgAtoB.put(MessagePayload.MOD, BigInteger.valueOf(98));
     msgAtoB.put(MessagePayload.BASE, BigInteger.valueOf(10));
     msgAtoB.put(MessagePayload.A, BigInteger.valueOf(88));
-    
+
     Map<MessagePayload, BigInteger> msgBtoA = new EnumMap<MessagePayload, BigInteger>(MessagePayload.class);
     msgBtoA.put(MessagePayload.B, BigInteger.valueOf(23));
-    
+
     final String s = DiffieHellmanKeyExchange.toString(a, b, msgAtoB, msgBtoA);
-    
+
     final String newline = System.getProperty("line.separator");
     final String expected = "secretA=1234" + newline +
                             "secretB=9876" + newline +
@@ -33,30 +33,28 @@ public class DiffieHellmanKeyExchangeTest
                             "msg2.b=23" + newline +
                             "keyA=null" + newline +
                             "keyB=null";
-    
+
     assertEquals(expected, s);
   }
-  
+
   @Test
   public void testCreate()
   {
     DiffieHellmanKeyExchange dhke = new DiffieHellmanKeyExchange(BigInteger.valueOf(1));
   }
-  
+
   @Test
   public void testExchange()
   {
     DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange(BigInteger.valueOf(1234));
     DiffieHellmanKeyExchange b = new DiffieHellmanKeyExchange(BigInteger.valueOf(9876));
-    
-    Map<MessagePayload, BigInteger> msgAtoB = a.computeMessageAtoB();
-    Map<MessagePayload, BigInteger> msgBtoA = b.computeMessageBtoA(msgAtoB);
-    
+
+    final Map<MessagePayload, BigInteger> msgAtoB = a.computeMessageAtoB();
+    final Map<MessagePayload, BigInteger> msgBtoA = b.computeMessageBtoA(msgAtoB);
+
     a.computeKey(msgBtoA);
     b.computeKey(msgAtoB);
-    
+
     assertEquals(a.getKey(), b.getKey());
-    
-    //System.out.println(DiffieHellmanKeyExchange.toString(a, b, msgAtoB, msgBtoA));
   }
 }
