@@ -8,5 +8,5 @@ TODO
 
 Uses of the Extended Euclidian algorithm include:
 - Computing the multiplicative inverses (Zp)* of Zp
-- 
-- 
+-
+-

@@ -2,8 +2,28 @@ Exercise 3
 
 3)
 
-TODO
+A secure channel is a means of transmitting data with confidentiality and
+integrity. The confidentiality is provided by a symmetric cipher and the
+integrity is provided by a Message Authentication Code, both operations require
+a separate key for each direction of data transfer (four unique keys in total).
+
+To obtain the four keys required to create a secure channel a key derivation
+function is used. This function takes the session key and a salt known to both
+parties and generates an expanded key (with a bit length greater than the
+session key) using the hashed MAC function (with the salt as the message).
+
+This expanded key is then used to generate four unique keys by generating the
+HMAC of an iterator variable which increments for each generated key using the
+expended key, essentially creating a pseudo random function generator using the
+HMAC function.
 
 4a)
 
-TODO
+An attacker, Eve, can break the Diffie-Hellman key exchange using a man in the
+middle attack in which communication between Alice and Bob takes place through
+Eve. This allows Eve to agree on separate keys with both Alice and Bob and
+therefore decrypt messages received from Alice, read and possibly modify them
+before re-encrypting them with the key agreed with Bob and forwarding them to
+Bob without detection, or vice-versa. This is possible due to the fact that the
+Diffie-Hellman key exchange does not provide a method of authenticated
+themselves (e.g. through the use of a digital signature).
