@@ -32,6 +32,7 @@ script:
   - ./ex2_solve_2a
   - ./ex2_solve_2b
   - ./ex3_key_exchange
+  - ./ex3_mim_attack
 
 notifications:
   email:

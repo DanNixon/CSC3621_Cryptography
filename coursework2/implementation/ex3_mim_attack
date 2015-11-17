@@ -1,0 +1,14 @@
+#!/bin/bash
+
+JAVA_FLAGS="-cp target/*.jar"
+CLASS=com.dan_nixon.csc3621.cw2.ex3.DiffieHellmanAttackApp
+
+SECRET_A=1234
+SECRET_B=9876
+TRANSCRIPT_FILE=dhke_attack_trans.txt
+
+java $JAVA_FLAGS $CLASS $TRANSCRIPT_FILE $SECRET_A $SECRET_B
+
+cat $TRANSCRIPT_FILE
+
+# rm $TRANSCRIPT_FILE

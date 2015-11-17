@@ -150,7 +150,7 @@ public class DiffieHellmanKeyExchange
   public BigInteger getKey() throws IllegalStateException
   {
     if(m_key == null)
-      throw new IllegalStateException("Key A has not been computed");
+      throw new IllegalStateException("Key has not been computed");
 
     return m_key;
   }
