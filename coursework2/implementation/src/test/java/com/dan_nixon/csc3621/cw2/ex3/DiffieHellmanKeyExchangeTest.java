@@ -25,14 +25,14 @@ public class DiffieHellmanKeyExchangeTest
     final String s = DiffieHellmanKeyExchange.toString(a, b, msgAtoB, msgBtoA);
 
     final String newline = System.getProperty("line.separator");
-    final String expected = "secretA=1234" + newline +
-                            "secretB=9876" + newline +
-                            "msg1.modulus=98" + newline +
-                            "msg1.base=10" + newline +
-                            "msg1.a=88" + newline +
-                            "msg2.b=23" + newline +
-                            "keyA=null" + newline +
-                            "keyB=null";
+    final String expected = "secretA = 1234" + newline +
+                            "secretB = 9876" + newline +
+                            "msg1.modulus = 98" + newline +
+                            "msg1.base = 10" + newline +
+                            "msg1.a = 88" + newline +
+                            "msg2.b = 23" + newline +
+                            "keyA = null" + newline +
+                            "keyB = null";
 
     assertEquals(expected, s);
   }

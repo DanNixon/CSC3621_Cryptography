@@ -40,35 +40,35 @@ public class DiffieHellmanKeyExchange
 
     final String newline = System.getProperty("line.separator");
 
-    sb.append("secretA=");
+    sb.append("secretA = ");
     sb.append(a.m_secret);
     sb.append(newline);
 
-    sb.append("secretB=");
+    sb.append("secretB = ");
     sb.append(b.m_secret);
     sb.append(newline);
 
-    sb.append("msg1.modulus=");
+    sb.append("msg1.modulus = ");
     sb.append(msgAtoB.get(MessagePayload.MOD));
     sb.append(newline);
 
-    sb.append("msg1.base=");
+    sb.append("msg1.base = ");
     sb.append(msgAtoB.get(MessagePayload.BASE));
     sb.append(newline);
 
-    sb.append("msg1.a=");
+    sb.append("msg1.a = ");
     sb.append(msgAtoB.get(MessagePayload.A));
     sb.append(newline);
 
-    sb.append("msg2.b=");
+    sb.append("msg2.b = ");
     sb.append(msgBtoA.get(MessagePayload.B));
     sb.append(newline);
 
-    sb.append("keyA=");
+    sb.append("keyA = ");
     sb.append(a.m_key);
     sb.append(newline);
 
-    sb.append("keyB=");
+    sb.append("keyB = ");
     sb.append(b.m_key);
 
     return sb.toString();

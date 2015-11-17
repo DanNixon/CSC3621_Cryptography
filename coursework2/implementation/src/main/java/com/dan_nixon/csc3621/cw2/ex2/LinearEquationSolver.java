@@ -23,7 +23,7 @@ public class LinearEquationSolver
 
     return x;
   }
-  
+
   /**
    * Solves the linear equation ax + b = 0 in Z_n using the
    * BigInteger.modInverse function o obtain the modular inverse.
