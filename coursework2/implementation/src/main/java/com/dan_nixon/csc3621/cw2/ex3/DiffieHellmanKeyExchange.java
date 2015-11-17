@@ -24,13 +24,13 @@ public class DiffieHellmanKeyExchange
   public static final int PRIME = 15485863;
 
   /**
-  * Creates a string representation of a Diffie-Hellman key exchange.
-  * @param a Participant A
-  * @param b Participant B
-  * @param msgAtoB Message from A to B
-  * @param msgBtoA Message from B to A
-  * @return String representation of exchange
-  */
+   * Creates a string representation of a Diffie-Hellman key exchange.
+   * @param a Participant A
+   * @param b Participant B
+   * @param msgAtoB Message from A to B
+   * @param msgBtoA Message from B to A
+   * @return String representation of exchange
+   */
   public static String toString(DiffieHellmanKeyExchange a,
                                 DiffieHellmanKeyExchange b,
                                 Map<MessagePayload, BigInteger> msgAtoB,
@@ -40,6 +40,7 @@ public class DiffieHellmanKeyExchange
 
     final String newline = System.getProperty("line.separator");
 
+    // Secrets
     sb.append("secretA = ");
     sb.append(a.m_secret);
     sb.append(newline);
@@ -48,6 +49,7 @@ public class DiffieHellmanKeyExchange
     sb.append(b.m_secret);
     sb.append(newline);
 
+    // Messages
     sb.append("msg1.modulus = ");
     sb.append(msgAtoB.get(MessagePayload.MOD));
     sb.append(newline);
@@ -64,6 +66,7 @@ public class DiffieHellmanKeyExchange
     sb.append(msgBtoA.get(MessagePayload.B));
     sb.append(newline);
 
+    // Keys
     sb.append("keyA = ");
     sb.append(a.m_key);
     sb.append(newline);
@@ -74,6 +77,10 @@ public class DiffieHellmanKeyExchange
     return sb.toString();
   }
 
+  /**
+   * Creates a new instance of a Diffie-Hellman key exchange participant.
+   * @param secret The participant's secret for this session
+   */
   public DiffieHellmanKeyExchange(BigInteger secret)
   {
     m_secret = secret;

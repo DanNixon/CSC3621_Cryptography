@@ -11,6 +11,18 @@ import java.util.Map;
  */
 public class DiffieHellmanAttack
 {
+  /**
+   * Creates a string representation of an attack on aDiffie-Hellman key
+   * exchange.
+   * @param a Participant A
+   * @param b Participant B
+   * @param e Adversary
+   * @param msgAtoE Message from A to adversary
+   * @param msgEtoA Message from adversary to A
+   * @param msgEtoB Message from adversary to B
+   * @param msgBtoE Message from B to adversary
+   * @return String representation of exchange
+   */
   public static String toString(DiffieHellmanKeyExchange a,
                                 DiffieHellmanKeyExchange b,
                                 DiffieHellmanAttack e,
@@ -88,6 +100,10 @@ public class DiffieHellmanAttack
     return sb.toString();
   }
 
+  /**
+   * Creates a new instance of a Diffie-Hellman attack adversary.
+   * @param secret The adversary's secret for this session
+   */
   public DiffieHellmanAttack(BigInteger secret)
   {
     m_secret = secret;
@@ -97,6 +113,13 @@ public class DiffieHellmanAttack
     m_keyB = null;
   }
 
+  /**
+   * Compute the message from the adversary to participant A given the message
+   * from participant A.
+   * Also computes the session key for communication with participant A.
+   * @param msgAtoE Message from participant A
+   * @return Message to participant A
+   */
   public Map<MessagePayload, BigInteger> computeMessageEtoA(Map<MessagePayload, BigInteger> msgAtoE)
   {
     // Use g and N from participant A
@@ -116,8 +139,17 @@ public class DiffieHellmanAttack
     return msgEtoA;
   }
 
-  public Map<MessagePayload, BigInteger> computeMessageEtoB()
+  /**
+   * Computes the message to participant B using the generator (g) and modulus
+   * (N) sent by participant A.
+   * Must be called after computeMessageEtoA().
+   * @return Message to participant B
+   */
+  public Map<MessagePayload, BigInteger> computeMessageEtoB() throws IllegalStateException
   {
+    if(m_n == null || m_g == null)
+      throw new IllegalStateException("No modulus or generator");
+
     Map<MessagePayload, BigInteger> msgEtoB = new EnumMap<MessagePayload, BigInteger>(MessagePayload.class);
 
     BigInteger e = m_g.modPow(m_secret, m_n);
@@ -129,7 +161,12 @@ public class DiffieHellmanAttack
     return msgEtoB;
   }
 
-  public void computeKeyB(Map<MessagePayload, BigInteger> msgBtoE)
+  /**
+   * Compute the session key for communication with participant B.
+   * Must be called after computeMessageEtoA().
+   * @param msgBtoE Message from participant B
+   */
+  public void computeKeyB(Map<MessagePayload, BigInteger> msgBtoE) throws IllegalStateException
   {
     if(m_n == null)
       throw new IllegalStateException("No modulus");
