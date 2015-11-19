@@ -13,18 +13,14 @@ public class DiffieHellmanKeyExchangeApp
    * Main entry point.
    * Performs a Diffie-Hellman key exchange between participants A and B (both
    * played by the local application).
-   * Usage: [transcript filename] [participant A secret] [participant B secret]
+   * Usage: [transcript filename]
    * @param args Parameters
    */
   public static void main(String[] args) throws IOException
   {
-    // Parse secrets
-    final BigInteger secretA = new BigInteger(args[1]);
-    final BigInteger secretB = new BigInteger(args[2]);
-
     // Do key exchange
-    DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange(secretA);
-    DiffieHellmanKeyExchange b = new DiffieHellmanKeyExchange(secretB);
+    DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange();
+    DiffieHellmanKeyExchange b = new DiffieHellmanKeyExchange();
 
     final Map<MessagePayload, BigInteger> msgAtoB = a.computeMessageAtoB();
     final Map<MessagePayload, BigInteger> msgBtoA = b.computeMessageBtoA(msgAtoB);

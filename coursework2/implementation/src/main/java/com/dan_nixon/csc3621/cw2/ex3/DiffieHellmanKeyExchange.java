@@ -79,11 +79,12 @@ public class DiffieHellmanKeyExchange
 
   /**
    * Creates a new instance of a Diffie-Hellman key exchange participant.
-   * @param secret The participant's secret for this session
    */
-  public DiffieHellmanKeyExchange(BigInteger secret)
+  public DiffieHellmanKeyExchange()
   {
-    m_secret = secret;
+    SecureRandom rng = new SecureRandom();
+    m_secret = new BigInteger(1024, rng);
+
     m_g = null;
     m_n = null;
     m_key = null;

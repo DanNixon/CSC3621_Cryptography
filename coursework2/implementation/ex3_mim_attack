@@ -3,12 +3,9 @@
 JAVA_FLAGS="-cp target/*.jar"
 CLASS=com.dan_nixon.csc3621.cw2.ex3.DiffieHellmanAttackApp
 
-SECRET_A=1234
-SECRET_B=9876
-SECRET_E=3456
 TRANSCRIPT_FILE=dhke_attack_trans.txt
 
-java $JAVA_FLAGS $CLASS $TRANSCRIPT_FILE $SECRET_A $SECRET_B $SECRET_E
+java $JAVA_FLAGS $CLASS $TRANSCRIPT_FILE
 
 cat $TRANSCRIPT_FILE
 

@@ -14,21 +14,15 @@ public class DiffieHellmanAttackApp
    * Performs a "man in the middle" attack on the Diffie-Hellman key exchange
    * between participants A and B (all parties played by the local
    * application).
-   * Usage: [transcript filename] [participant A secret] [participant B secret]
-   *        [adversary secret]
+   * Usage: [transcript filename]
    * @param args Parameters
    */
   public static void main(String[] args) throws IOException
   {
-    // Parse secrets
-    final BigInteger secretA = new BigInteger(args[1]);
-    final BigInteger secretB = new BigInteger(args[2]);
-    final BigInteger secretE = new BigInteger(args[3]);
-
     // Perform attack
-    DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange(secretA);
-    DiffieHellmanKeyExchange b = new DiffieHellmanKeyExchange(secretB);
-    DiffieHellmanAttack e = new DiffieHellmanAttack(secretE);
+    DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange();
+    DiffieHellmanKeyExchange b = new DiffieHellmanKeyExchange();
+    DiffieHellmanAttack e = new DiffieHellmanAttack();
 
     final Map<MessagePayload, BigInteger> msgAtoE = a.computeMessageAtoB();
     final Map<MessagePayload, BigInteger> msgEtoA = e.computeMessageEtoA(msgAtoE);

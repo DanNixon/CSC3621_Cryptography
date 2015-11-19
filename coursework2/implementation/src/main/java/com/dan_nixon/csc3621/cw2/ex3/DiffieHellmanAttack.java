@@ -102,11 +102,12 @@ public class DiffieHellmanAttack
 
   /**
    * Creates a new instance of a Diffie-Hellman attack adversary.
-   * @param secret The adversary's secret for this session
    */
-  public DiffieHellmanAttack(BigInteger secret)
+  public DiffieHellmanAttack()
   {
-    m_secret = secret;
+    SecureRandom rng = new SecureRandom();
+    m_secret = new BigInteger(1024, rng);
+
     m_g = null;
     m_n = null;
     m_keyA = null;

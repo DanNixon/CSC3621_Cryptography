@@ -11,8 +11,8 @@ public class DiffieHellmanKeyExchangeTest
   @Test
   public void testToString()
   {
-    DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange(BigInteger.valueOf(1234));
-    DiffieHellmanKeyExchange b = new DiffieHellmanKeyExchange(BigInteger.valueOf(9876));
+    DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange();
+    DiffieHellmanKeyExchange b = new DiffieHellmanKeyExchange();
 
     Map<MessagePayload, BigInteger> msgAtoB = new EnumMap<MessagePayload, BigInteger>(MessagePayload.class);
     msgAtoB.put(MessagePayload.MOD, BigInteger.valueOf(98));
@@ -25,23 +25,23 @@ public class DiffieHellmanKeyExchangeTest
     final String s = DiffieHellmanKeyExchange.toString(a, b, msgAtoB, msgBtoA);
 
     final String newline = System.getProperty("line.separator");
-    final String expected = "secretA = 1234" + newline +
-                            "secretB = 9876" + newline +
-                            "msg1.modulus = 98" + newline +
-                            "msg1.base = 10" + newline +
-                            "msg1.a = 88" + newline +
-                            "msg2.b = 23" + newline +
-                            "keyA = null" + newline +
-                            "keyB = null";
+    final String[] ss = s.split(newline);
 
-    assertEquals(expected, s);
+    assertEquals(8, ss.length);
+
+    assertEquals("msg1.modulus = 98", ss[2]);
+    assertEquals("msg1.base = 10", ss[3]);
+    assertEquals("msg1.a = 88", ss[4]);
+    assertEquals("msg2.b = 23", ss[5]);
+    assertEquals("keyA = null", ss[6]);
+    assertEquals("keyB = null", ss[7]);
   }
 
   @Test
   public void testExchange()
   {
-    DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange(BigInteger.valueOf(1234));
-    DiffieHellmanKeyExchange b = new DiffieHellmanKeyExchange(BigInteger.valueOf(9876));
+    DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange();
+    DiffieHellmanKeyExchange b = new DiffieHellmanKeyExchange();
 
     final Map<MessagePayload, BigInteger> msgAtoB = a.computeMessageAtoB();
     final Map<MessagePayload, BigInteger> msgBtoA = b.computeMessageBtoA(msgAtoB);

@@ -11,9 +11,9 @@ public class DiffieHellmanAttackTest
   @Test
   public void testToString()
   {
-    DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange(BigInteger.valueOf(1234));
-    DiffieHellmanKeyExchange b = new DiffieHellmanKeyExchange(BigInteger.valueOf(9876));
-    DiffieHellmanAttack e = new DiffieHellmanAttack(BigInteger.valueOf(3456));
+    DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange();
+    DiffieHellmanKeyExchange b = new DiffieHellmanKeyExchange();
+    DiffieHellmanAttack e = new DiffieHellmanAttack();
 
     Map<MessagePayload, BigInteger> msgAtoE = new EnumMap<MessagePayload, BigInteger>(MessagePayload.class);
     msgAtoE.put(MessagePayload.MOD, BigInteger.valueOf(98));
@@ -36,31 +36,30 @@ public class DiffieHellmanAttackTest
                                                   msgEtoB, msgBtoE);
 
     final String newline = System.getProperty("line.separator");
-    final String expected = "secretA = 1234" + newline +
-                            "secretE = 3456" + newline +
-                            "secretB = 9876" + newline +
-                            "msgAtoE.modulus = 98" + newline +
-                            "msgAtoE.base = 10" + newline +
-                            "msgAtoE.a = 88" + newline +
-                            "msgEtoA.b = 23" + newline +
-                            "msgEtoB.modulus = 27" + newline +
-                            "msgEtoB.base = 46" + newline +
-                            "msgEtoB.a = 91" + newline +
-                            "msgBtoE.b = 87" + newline +
-                            "keyA = null" + newline +
-                            "keyA_E = null" + newline +
-                            "keyB_E = null" + newline +
-                            "keyB = null";
+    final String[] ss = s.split(newline);
 
-    assertEquals(expected, s);
+    assertEquals(15, ss.length);
+
+    assertEquals("msgAtoE.modulus = 98", ss[3]);
+    assertEquals("msgAtoE.base = 10", ss[4]);
+    assertEquals("msgAtoE.a = 88", ss[5]);
+    assertEquals("msgEtoA.b = 23", ss[6]);
+    assertEquals("msgEtoB.modulus = 27", ss[7]);
+    assertEquals("msgEtoB.base = 46", ss[8]);
+    assertEquals("msgEtoB.a = 91", ss[9]);
+    assertEquals("msgBtoE.b = 87", ss[10]);
+    assertEquals("keyA = null", ss[11]);
+    assertEquals("keyA_E = null", ss[12]);
+    assertEquals("keyB_E = null", ss[13]);
+    assertEquals("keyB = null", ss[14]);
   }
 
   @Test
   public void testAttack()
   {
-    DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange(BigInteger.valueOf(1234));
-    DiffieHellmanKeyExchange b = new DiffieHellmanKeyExchange(BigInteger.valueOf(9876));
-    DiffieHellmanAttack e = new DiffieHellmanAttack(BigInteger.valueOf(3456));
+    DiffieHellmanKeyExchange a = new DiffieHellmanKeyExchange();
+    DiffieHellmanKeyExchange b = new DiffieHellmanKeyExchange();
+    DiffieHellmanAttack e = new DiffieHellmanAttack();
 
     final Map<MessagePayload, BigInteger> msgAtoE = a.computeMessageAtoB();
     final Map<MessagePayload, BigInteger> msgEtoA = e.computeMessageEtoA(msgAtoE);
