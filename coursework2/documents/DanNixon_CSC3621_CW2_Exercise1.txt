@@ -2,11 +2,29 @@ Exercise 1
 
 2)
 
-TODO
+The greatest common denominator of x and y is the largest integer that divides
+both x and y without remainder.
+
+At the start of an iteration the quotient, q = x / y and remainder r = x % y are
+calculated, which can be expressed as x = qy + r.
+
+From this expression it follows that:
+- an integer d that divides y and r will also divide x
+- an integer d that divides x and y will also divide r
+
+This allows the GCD computation to be split into a smaller problem as: gcd(x, y)
+= gcd(y, r)
+
+When a quotient is found that divides both y and r exactly, i.e. r = 0, the GCD
+is given by the value of q.
+
+The extended euclidean algorithm adds an extra step where two additional
+sequences, s and t are created which use the quotient calculated in the current
+iteration to give an expression for r in terms of x and y.
 
 3)
 
 Uses of the Extended Euclidian algorithm include:
 - Computing the multiplicative inverses (Zp)* of Zp
--
--
+- Solving linear equations in Zn
+- Expressing gcd(a, b) as integer combination of a and b (Bézout's identity)

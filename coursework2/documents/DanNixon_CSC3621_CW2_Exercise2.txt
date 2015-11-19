@@ -2,4 +2,13 @@ Exercise 2
 
 3)
 
-TODO
+The number N in a linear equation denotes the modulus in which the arithmetic is
+performed, i.e. the result of each operation will only ever be in the range [0,
+N).
+
+Since solving a linear equation in Zn requires calculating the multiplicative
+modular inverse of a, the equation can only be defined over a in (Zn)*.
+
+The equation in question 2b could not be solved as the values of a and N are not
+coprime, i.e. gcd(a, N) = 1. This meant that it is not possible to compute the
+multiplicative modular inverse of a, required for the expression x = -b . a^-1.
