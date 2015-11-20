@@ -3,7 +3,7 @@
 JAVA_FLAGS="-cp target/*.jar"
 CLASS=com.dan_nixon.csc3621.cw2.ex3.DiffieHellmanAttackApp
 
-TRANSCRIPT_FILE=dhke_attack_trans.txt
+TRANSCRIPT_FILE=ex3_q4b_diffie-hellman-attack.txt
 
 java $JAVA_FLAGS $CLASS $TRANSCRIPT_FILE
 
