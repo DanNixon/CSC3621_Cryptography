@@ -33,6 +33,10 @@ script:
   - ./ex2_solve_2b
   - ./ex3_key_exchange
   - ./ex3_mim_attack
+  - cd ../..
+  - cd coursework3/implementation
+  - mvn install -DskipTests=true -q
+  - mvn test
 
 notifications:
   email:
