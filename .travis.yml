@@ -37,6 +37,7 @@ script:
   - cd coursework3/implementation
   - mvn install -DskipTests=true -q
   - mvn test
+  - ./ex1_decipher_rsa
 
 notifications:
   email:

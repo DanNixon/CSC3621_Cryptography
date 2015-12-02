@@ -26,4 +26,32 @@ public class RSAAttackTest
     final String s = RSAAttack.decodeString(new BigInteger("7182696584"));
     assertEquals("GREAT", s);
   }
+  
+  @Test
+  public void test_NRoot_Square()
+  {
+    final BigInteger a = BigInteger.valueOf(100);
+    final BigInteger n = BigInteger.valueOf(2);
+    
+    assertEquals(BigInteger.valueOf(10), RSAAttack.nRoot(a, n));
+  }
+  
+  @Test
+  public void test_NRoot_Cube()
+  {
+    final BigInteger a = BigInteger.valueOf(512);
+    final BigInteger n = BigInteger.valueOf(3);
+    
+    assertEquals(BigInteger.valueOf(8), RSAAttack.nRoot(a, n));
+  }
+  
+  @Test
+  public void test_DecipherCW()
+  {
+    final BigInteger n = new BigInteger("23095675100376460353980581297675223373026833410647478222648288977449481620360427");
+    final BigInteger e = new BigInteger("3");
+    final BigInteger c = new BigInteger("674472526620593903800497637242400187916753185909");
+    
+    assertEquals("WELLDONE", RSAAttack.retrieveMessage(n, e, c));
+  }
 }

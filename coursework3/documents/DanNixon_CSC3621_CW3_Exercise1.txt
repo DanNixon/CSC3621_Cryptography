@@ -1,0 +1,27 @@
+Exercise 1
+
+Q1)
+
+The combination of a small encryption exponent (3) and shor message (m) length
+(8) makes this encryption vulnerable to attack by computing the e-th root of
+the cipher modulus N which gives the original plain text message.
+
+This attack is possible when len(m) < n^(1/e), in this case the following is
+shown to hold true making this exmaple vulnerable:
+
+len(m) < n^(1/e)
+8 < n^(1/3)
+8^3 < n
+512 < n
+
+If the same RSA modulus (N) was used throuhout the organisation TODO
+
+
+Q2)
+
+The plaintext message is "WELLDONE".
+
+
+Q3)
+
+TODO

@@ -44,6 +44,45 @@ public class RSAAttack
     
     return decoded.toString();
   }
+
+  /**
+   * Calculates the nth root of a.
+   * 
+   * @param a Value
+   * @param n Root
+   * @return b such that b^n = a
+   */
+  public static BigInteger nRoot(BigInteger a, BigInteger n)
+  {
+    BigInteger r = BigInteger.ONE;
+    BigInteger s = BigInteger.ONE;
+ 
+    while(true)
+    {
+      r = (((n.subtract(BigInteger.ONE)).multiply(r)).add(a.divide(r.pow(n.intValue() - 1)))).divide(n);
+      
+      if (s.equals(r))
+        break;
+      else if (!s.equals(r.subtract(BigInteger.ONE)))
+        s = r;
+    }
+ 
+    return r;
+  }
   
-  // TODO  
+  /**
+   * Retrieves the plain text message for an RSA cipher encrypted with a given
+   * (small) encryption exponent.
+   * 
+   * @param n Modulus
+   * @param e Encryption exponent
+   * @param c Cipher
+   * @return Plain text message
+   */
+  public static String retrieveMessage(BigInteger n, BigInteger e, BigInteger c)
+  { 
+    BigInteger m = nRoot(c, e);
+    m = m.mod(n);
+    return decodeString(m);
+  }
 }
