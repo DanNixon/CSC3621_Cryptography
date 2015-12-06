@@ -6,15 +6,30 @@ The combination of a small encryption exponent (3) and shor message (m) length
 (8) makes this encryption vulnerable to attack by computing the e-th root of
 the cipher modulus N which gives the original plain text message.
 
-This attack is possible when len(m) < n^(1/e), in this case the following is
-shown to hold true making this exmaple vulnerable:
+This attack is possible when len(m) < n^(1/e), i.e. the message will never
+"wrap around" the modulus in this case the following is shown to hold true
+making this exmaple vulnerable:
 
-len(m) < n^(1/e)
-8 < n^(1/3)
-8^3 < n
-512 < n
+m < n^(1/e)
+"zzzzzzzz" < n^(1/3)
+9090909090909090 < n^(1/3)
+9090909090909090^3 < n
+~7.5e47 < n
+~7.5e47 < ~2.3e79
 
-If the same RSA modulus (N) was used throuhout the organisation TODO
+If the same RSA modulus (N) was used throughout the organisation then it
+becomes possible for one user to compute the private decryption exponent for
+all other users who share the same modulus.
+
+This is possible by first computing group order of the modulus Phi(N):
+
+e.d = 1 (mod Phi(N))
+e.d = 1 + kPhi(N)
+
+Then the private decryption exponent for any other user can be obtained by
+computing the modulat inverse of their public encryption exponent:
+
+d = e^-1 (mod Phi(N))
 
 
 Q2)
@@ -24,4 +39,25 @@ The plaintext message is "WELLDONE".
 
 Q3)
 
-TODO
+Textbook RSA can be enhanced using a hybrid encryption scheme combining
+RSA with a symmetric cipher and by padding the plaintext with a given
+message structure before encryption.
+
+The security advantages of this are:
+- It adds randomness to the ciphertext, eliminating the possibility of a
+  chosen plaintext attack
+- By means of enforcing a message structure it adds integrity, allowing
+  any changes to the ciphertext by an adversory to be obvious to the
+  intended recipient
+- It enforces a message size such that the message can never be 
+
+Hybrid encryption schemes work by generating a random key which is
+encrypted using an asymetric cipher using the public key of the recipient,
+this generates one half of the ciphertext. The same random key is then used
+as to encrypt the plaintext using a symmetric cipher, this generates the
+remaining half of the ciphertext.
+
+Padding works by adding a known structure to the plaintext which is not clearly
+visible in the ciphertext, therefore any attempt to mangle the ciphertext will
+(after decryption) also change the data in the known structre indictaing to the
+recipient that the ciphertext was modified in transit.
