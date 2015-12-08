@@ -2,9 +2,53 @@ Exercise 2
 
 Q1)
 
-TODO
+If an existing version of the software is available then it is possible to use
+GPG its self to verify the newly downloaded version by comparing a signature
+computed from the downloaded archive to one which was created by the developers
+when the archive was created.
+
+Alternatively if no existing GPG installation is available, the SHA-1 checksum
+of the archive can be computed and compared with the checksum published by the
+developers. This does rely on the checksum used for verification having not also
+been modified (which if an adversary has modified the archive they are likely to
+be able to modify the verification checksum), in the case of GPG this is
+somewhat mitigated by the verification checksum being distributed over several
+mirrors of the development mailing list, increasing the number of places an
+adversary would have to change the checksum.
+
+The public key of a recipient can be verified by computing the fingerprint of
+the key and comparing it with the fingerprint computed by the recipient,
+preferably the exchange of the fingerprint should be done via a non-electronic
+means (such as paper or telephone) to reduce the chance of it being manipulated
+by an adversary.
+
+GPG provides the functionality to compute the fingerprint for any public keys
+that have been imported.
+
+Using GPG it is also possible to obtain public keys from a key server, this
+method requires that the key server in use is regarded to be trusted by both
+parties however several reputable key servers exist that also distribute public
+keys to a pool of additional servers.
+
+It is important to verify both the GPG installation and the public key of the
+recipient before encrypting towards the recipient with the assumed key as it
+could have been possible for an adversary to have modified either during transit
+when the sending party obtained them.
 
 
 Q2)
 
-TODO
+The encryption of large files is performed using a symmetric cipher (the default
+being CAST5) using a randomly generated key. This key is then encrypted towards
+the recipients using their asymmetric session keys.
+
+When multiple recipients are specified for an encrypted file the randomly
+generated key used for the symmetric cipher is encrypted once for each recipient
+using their public key. This allows any of the intended recipients to obtain the
+symmetric cipher key by decrypting the relevant asymmetric cipher text. This
+also does not greatly increase the message size as the only duplicated
+information is the symmetric key.
+
+In order for a party to be able to decrypt a file encrypted by them self, they
+must include their public key in the list of recipients when the file is
+encrypted.
